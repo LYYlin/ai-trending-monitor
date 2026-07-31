@@ -1,0 +1,49 @@
+name: GitHub AI 热点日报
+
+on:
+  schedule:
+    # UTC 1:00 = 北京时间 9:00（GitHub Actions cron 可能有 5-30 分钟延迟）
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monitor script
+        run: python github_ai_monitor.py
+        env:
+          # 使用 Actions 自动提供的 Token，提升 API 限额到 5000 次/小时
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy latest report as index.html
+        run: |
+          cp "reports/report_$(date -u +%Y-%m-%d).html" reports/index.html
+
+      - name: Commit history data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history.json
+          git diff --staged --quiet || git commit -m "chore: update history $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Deploy reports to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          keep_files: true # 保留历史报告

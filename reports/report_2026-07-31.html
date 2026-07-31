@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub AI 热点日报 - 2026-07-31</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f6f8fa;
+    color: #1f2328;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* 顶部概览 */
+  .header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.2);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 14px; opacity: 0.9; }
+  .stats-bar {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px 20px;
+    backdrop-filter: blur(4px);
+  }
+  .stat-item .num { font-size: 24px; font-weight: 700; }
+  .stat-item .label { font-size: 12px; opacity: 0.85; }
+
+  /* 板块 */
+  .section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .count {
+    font-size: 13px;
+    font-weight: 400;
+    color: #656d76;
+    background: #eaeef2;
+    border-radius: 12px;
+    padding: 2px 10px;
+  }
+
+  /* 项目卡片 */
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .repo-card {
+    border: 1px solid #d0d7de;
+    border-radius: 12px;
+    padding: 16px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  .repo-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #0969da;
+  }
+  .repo-card .name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .repo-card .name a {
+    color: #0969da;
+    text-decoration: none;
+  }
+  .repo-card .name a:hover { text-decoration: underline; }
+  .repo-card .desc {
+    font-size: 13px;
+    color: #656d76;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 38px;
+  }
+  .repo-card .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #656d76;
+    margin-top: auto;
+    flex-wrap: wrap;
+  }
+  .repo-card .meta .lang {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .repo-card .meta .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .repo-card .stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    color: #1f2328;
+  }
+  .repo-card .growth {
+    color: #1a7f37;
+    font-size: 11px;
+    font-weight: 600;
+    background: #dafbe1;
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+  .repo-card .source-tag {
+    font-size: 10px;
+    color: #656d76;
+    background: #f6f8fa;
+    border-radius: 8px;
+    padding: 1px 6px;
+  }
+  .repo-card .topics {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .repo-card .topic {
+    font-size: 11px;
+    color: #0969da;
+    background: #ddf4ff;
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+
+  /* 语言分布图 */
+  .lang-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .lang-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .lang-bar .lang-name {
+    width: 100px;
+    font-size: 13px;
+    text-align: right;
+  }
+  .lang-bar .bar-track {
+    flex: 1;
+    background: #eaeef2;
+    border-radius: 6px;
+    height: 20px;
+    overflow: hidden;
+  }
+  .lang-bar .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 11px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .footer {
+    text-align: center;
+    color: #656d76;
+    font-size: 12px;
+    padding: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .repo-grid { grid-template-columns: 1fr; }
+    .stats-bar { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🔥 GitHub AI 热点日报</h1>
+    <div class="date">📅 2026-07-31 · 自动监控 · 数据来源：GitHub Trending + Search API</div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="num">100</div>
+        <div class="label">追踪项目</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">20</div>
+        <div class="label">Trending 热门</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">20</div>
+        <div class="label">本周升星</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">8.8w</div>
+        <div class="label">平均 Star</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🔥 Trending 热门
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">GitHub Trending 本周/今日升星最快的 AI 项目</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/affaan-m/ECC" target="_blank">affaan-m/ECC</a></div>
+        <div class="desc">The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 23.6w</span>
+          <span class="growth">+804 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mattpocock/skills" target="_blank">mattpocock/skills</a></div>
+        <div class="desc">Skills for Real Engineers. Straight from my .agents directory.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 19.6w</span>
+          <span class="growth">+1.2w ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank">harry0703/MoneyPrinterTurbo</a></div>
+        <div class="desc">利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 10.1w</span>
+          <span class="growth">+403 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/PaddlePaddle/PaddleOCR" target="_blank">PaddlePaddle/PaddleOCR</a></div>
+        <div class="desc">Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 8.7w</span>
+          <span class="growth">+93 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/earendil-works/pi" target="_blank">earendil-works/pi</a></div>
+        <div class="desc">AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 8.1w</span>
+          <span class="growth">+4.8k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/koala73/worldmonitor" target="_blank">koala73/worldmonitor</a></div>
+        <div class="desc">Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 7.7w</span>
+          <span class="growth">+6.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ComposioHQ/awesome-claude-skills" target="_blank">ComposioHQ/awesome-claude-skills</a></div>
+        <div class="desc">A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 7.1w</span>
+          <span class="growth">+2.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ansible/ansible" target="_blank">ansible/ansible</a></div>
+        <div class="desc">Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy and maintain. Automate everything from code deployment to network configuration to cloud management, in a language that approaches plain English, using SSH, with no agents to install on remote systems.https://docs.ansible.com.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 7.0w</span>
+          <span class="growth">+29 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Panniantong/Agent-Reach" target="_blank">Panniantong/Agent-Reach</a></div>
+        <div class="desc">Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6.3w</span>
+          <span class="growth">+543 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/deepfakes/faceswap" target="_blank">deepfakes/faceswap</a></div>
+        <div class="desc">Deepfakes Software For All</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.7w</span>
+          <span class="growth">+1.4k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mvanhorn/last30days-skill" target="_blank">mvanhorn/last30days-skill</a></div>
+        <div class="desc">AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.6w</span>
+          <span class="growth">+378 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/AI-For-Beginners" target="_blank">microsoft/AI-For-Beginners</a></div>
+        <div class="desc">12 Weeks, 24 Lessons, AI for All!</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 5.4w</span>
+          <span class="growth">+155 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/lllyasviel/Fooocus" target="_blank">lllyasviel/Fooocus</a></div>
+        <div class="desc">Focus on prompting and generating</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.2w</span>
+          <span class="growth">+63 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/VibeVoice" target="_blank">microsoft/VibeVoice</a></div>
+        <div class="desc">Open-Source Frontier Voice AI</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.2w</span>
+          <span class="growth">+1.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank">ChromeDevTools/chrome-devtools-mcp</a></div>
+        <div class="desc">Chrome DevTools for coding agents</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 4.8w</span>
+          <span class="growth">+80 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/moeru-ai/airi" target="_blank">moeru-ai/airi</a></div>
+        <div class="desc">💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 4.6w</span>
+          <span class="growth">+2.8k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/streamlit/streamlit" target="_blank">streamlit/streamlit</a></div>
+        <div class="desc">Streamlit — A faster way to build and share data apps.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4.5w</span>
+          <span class="growth">+37 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank">rohitg00/ai-engineering-from-scratch</a></div>
+        <div class="desc">Learn it. Build it. Ship it for others.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4.5w</span>
+          <span class="growth">+2.4k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/github/awesome-copilot" target="_blank">github/awesome-copilot</a></div>
+        <div class="desc">Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.7w</span>
+          <span class="growth">+54 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank">diegosouzapw/OmniRoute</a></div>
+        <div class="desc">Never stop coding. Free MIT AI gateway: one endpoint, 290+ providers (90+ free), 500+ models — Kimi, Claude, GPT, OpenAI, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by 500+ contributors</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 3.5w</span>
+          <span class="growth">+8.5k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      ⚡ 本周升星最快
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">近期 Star 增长最快的 AI 项目（基于历史数据增量）</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank">diegosouzapw/OmniRoute</a></div>
+        <div class="desc">Never stop coding. Free MIT AI gateway: one endpoint, 290+ providers (90+ free), 500+ models — Kimi, Claude, GPT, OpenAI, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by 500+ contributors</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 3.5w</span>
+          <span class="growth">+8.5k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/koala73/worldmonitor" target="_blank">koala73/worldmonitor</a></div>
+        <div class="desc">Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 7.7w</span>
+          <span class="growth">+6.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/alibaba/open-code-review" target="_blank">alibaba/open-code-review</a></div>
+        <div class="desc">Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+          <span class="stars">⭐ 1.7w</span>
+          <span class="growth">+5.3k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/citrolabs/ego-lite" target="_blank">citrolabs/ego-lite</a></div>
+        <div class="desc">The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 6.6k</span>
+          <span class="growth">+5.0k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ayghri/i-have-adhd" target="_blank">ayghri/i-have-adhd</a></div>
+        <div class="desc">A skill to stop your coding agent from burying the answer. ADHD-friendly output.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 1.4w</span>
+          <span class="growth">+5.0k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/virgiliojr94/book-to-skill" target="_blank">virgiliojr94/book-to-skill</a></div>
+        <div class="desc">Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 1.4w</span>
+          <span class="growth">+4.1k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/CoreBunch/Instatic" target="_blank">CoreBunch/Instatic</a></div>
+        <div class="desc">The open-source alternative to Webflow, Framer and WordPress. Agentic self-hosted visual CMS outputting clean static pages. Users, roles, plugins, content, database, it's all there.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 6.8k</span>
+          <span class="growth">+2.9k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/moeru-ai/airi" target="_blank">moeru-ai/airi</a></div>
+        <div class="desc">💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 4.6w</span>
+          <span class="growth">+2.8k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/shiyu-coder/Kronos" target="_blank">shiyu-coder/Kronos</a></div>
+        <div class="desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.5w</span>
+          <span class="growth">+2.3k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ComposioHQ/awesome-claude-skills" target="_blank">ComposioHQ/awesome-claude-skills</a></div>
+        <div class="desc">A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 7.1w</span>
+          <span class="growth">+2.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/tirth8205/code-review-graph" target="_blank">tirth8205/code-review-graph</a></div>
+        <div class="desc">Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 2.8w</span>
+          <span class="growth">+2.1k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/HKUDS/DeepTutor" target="_blank">HKUDS/DeepTutor</a></div>
+        <div class="desc">DeepTutor: Lifelong Personalized Tutoring.https://deeptutor.info/.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.1w</span>
+          <span class="growth">+2.0k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/deepfakes/faceswap" target="_blank">deepfakes/faceswap</a></div>
+        <div class="desc">Deepfakes Software For All</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.7w</span>
+          <span class="growth">+1.4k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/VibeVoice" target="_blank">microsoft/VibeVoice</a></div>
+        <div class="desc">Open-Source Frontier Voice AI</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.2w</span>
+          <span class="growth">+1.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/different-ai/openwork" target="_blank">different-ai/openwork</a></div>
+        <div class="desc">The open-source alternative to Claude Cowork (powered by opencode)</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 1.9w</span>
+          <span class="growth">+915 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/UditAkhourii/adhd" target="_blank">UditAkhourii/adhd</a></div>
+        <div class="desc">ADHD — a skill for coding agents. Tree-of-thought with pruning, built on the Claude & Codex Agent SDK. Fans out parallel divergent thoughts under different cognitive frames, scores, prunes traps, deepens the survivors. The no-brainer skill for creative and interdisciplinary work.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 2.9k</span>
+          <span class="growth">+791 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/RyanCodrai/turbovec" target="_blank">RyanCodrai/turbovec</a></div>
+        <div class="desc">A vector index built on TurboQuant, written in Rust with Python bindings</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+          <span class="stars">⭐ 1.5w</span>
+          <span class="growth">+750 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/huggingface/speech-to-speech" target="_blank">huggingface/speech-to-speech</a></div>
+        <div class="desc">Build local voice agents with open-source models</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 9.0k</span>
+          <span class="growth">+628 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/agent-governance-toolkit" target="_blank">microsoft/agent-governance-toolkit</a></div>
+        <div class="desc">AI Agent Governance Toolkit — Policy enforcement, zero-trust identity, execution sandboxing, and reliability engineering for autonomous AI agents. Covers 10/10 OWASP Agentic Top 10.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.5k</span>
+          <span class="growth">+614 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank">harry0703/MoneyPrinterTurbo</a></div>
+        <div class="desc">利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 10.1w</span>
+          <span class="growth">+403 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🤖 LLM / Agent
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">大语言模型、Agent 框架、RAG、提示工程</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw/openclaw</a></div>
+        <div class="desc">Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 </div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">assistant</span><span class="topic">crustacean</span><span class="topic">molty</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 38.5w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/obra/superpowers" target="_blank">obra/superpowers</a></div>
+        <div class="desc">An agentic skills framework & software development methodology that works.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">brainstorming</span><span class="topic">coding</span><span class="topic">obra</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 26.4w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/affaan-m/ECC" target="_blank">affaan-m/ECC</a></div>
+        <div class="desc">The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</div>
+        <div class="topics"><span class="topic">ai-agents</span><span class="topic">anthropic</span><span class="topic">claude</span><span class="topic">claude-code</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 23.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/NousResearch/hermes-agent" target="_blank">NousResearch/hermes-agent</a></div>
+        <div class="desc">The agent that grows with you</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-agent</span><span class="topic">ai-agents</span><span class="topic">anthropic</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 22.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/n8n-io/n8n" target="_blank">n8n-io/n8n</a></div>
+        <div class="desc">Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">apis</span><span class="topic">automation</span><span class="topic">cli</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 19.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mattpocock/skills" target="_blank">mattpocock/skills</a></div>
+        <div class="desc">Skills for Real Engineers. Straight from my .agents directory.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 19.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/anomalyco/opencode" target="_blank">anomalyco/opencode</a></div>
+        <div class="desc">The open source coding agent.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 19.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank">Significant-Gravitas/AutoGPT</a></div>
+        <div class="desc">AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</div>
+        <div class="topics"><span class="topic">agentic-ai</span><span class="topic">agents</span><span class="topic">ai</span><span class="topic">artificial-intelligence</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 18.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ollama/ollama" target="_blank">ollama/ollama</a></div>
+        <div class="desc">Get up and running with Kimi-K2.6, GLM-5.2, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.</div>
+        <div class="topics"><span class="topic">deepseek</span><span class="topic">gemma</span><span class="topic">gemma3</span><span class="topic">glm</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+          <span class="stars">⭐ 17.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/markitdown" target="_blank">microsoft/markitdown</a></div>
+        <div class="desc">Python tool for converting files and office documents to Markdown.</div>
+        <div class="topics"><span class="topic">autogen</span><span class="topic">autogen-extension</span><span class="topic">langchain</span><span class="topic">markdown</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 17.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/f/prompts.chat" target="_blank">f/prompts.chat</a></div>
+        <div class="desc">f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">artificial-intelligence</span><span class="topic">awesome-list</span><span class="topic">chatgpt</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>HTML</span>
+          <span class="stars">⭐ 16.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/huggingface/transformers" target="_blank">huggingface/transformers</a></div>
+        <div class="desc">🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. </div>
+        <div class="topics"><span class="topic">audio</span><span class="topic">deep-learning</span><span class="topic">deepseek</span><span class="topic">gemma</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 16.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/firecrawl/firecrawl" target="_blank">firecrawl/firecrawl</a></div>
+        <div class="desc">The API to search, scrape, and interact with the web at scale. 🔥</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">ai-crawler</span><span class="topic">ai-scraping</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 15.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Snailclimb/JavaGuide" target="_blank">Snailclimb/JavaGuide</a></div>
+        <div class="desc">Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发</div>
+        <div class="topics"><span class="topic">agent</span><span class="topic">ai</span><span class="topic">context-engineering</span><span class="topic">deepseek</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 15.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langflow-ai/langflow" target="_blank">langflow-ai/langflow</a></div>
+        <div class="desc">Langflow is a powerful tool for building and deploying AI-powered agents and workflows.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">chatgpt</span><span class="topic">generative-ai</span><span class="topic">large-language-models</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 15.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langgenius/dify" target="_blank">langgenius/dify</a></div>
+        <div class="desc">Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.</div>
+        <div class="topics"><span class="topic">agent</span><span class="topic">agentic-ai</span><span class="topic">agentic-framework</span><span class="topic">agentic-workflow</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 15.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/open-webui/open-webui" target="_blank">open-webui/open-webui</a></div>
+        <div class="desc">User-friendly AI Interface (Supports Ollama, OpenAI API, ...)</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">llm</span><span class="topic">llm-ui</span><span class="topic">llm-webui</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langchain-ai/langchain" target="_blank">langchain-ai/langchain</a></div>
+        <div class="desc">The agent engineering platform.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">anthropic</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/anthropics/claude-code" target="_blank">anthropics/claude-code</a></div>
+        <div class="desc">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/msitarzewski/agency-agents" target="_blank">msitarzewski/agency-agents</a></div>
+        <div class="desc">A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 13.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🎨 AIGC 生成式
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">图像/视频/3D/音乐生成、Stable Diffusion 等</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langflow-ai/langflow" target="_blank">langflow-ai/langflow</a></div>
+        <div class="desc">Langflow is a powerful tool for building and deploying AI-powered agents and workflows.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">chatgpt</span><span class="topic">generative-ai</span><span class="topic">large-language-models</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 15.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langchain-ai/langchain" target="_blank">langchain-ai/langchain</a></div>
+        <div class="desc">The agent engineering platform.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">anthropic</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Comfy-Org/ComfyUI" target="_blank">Comfy-Org/ComfyUI</a></div>
+        <div class="desc">The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">comfy</span><span class="topic">comfyui</span><span class="topic">python</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 12.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank">microsoft/generative-ai-for-beginners</a></div>
+        <div class="desc">21 Lessons, Get Started Building with Generative AI </div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">azure</span><span class="topic">chatgpt</span><span class="topic">dall-e</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 11.4w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/rasbt/LLMs-from-scratch" target="_blank">rasbt/LLMs-from-scratch</a></div>
+        <div class="desc">Implement a ChatGPT-like LLM in PyTorch from scratch, step by step</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">artificial-intelligence</span><span class="topic">attention-mechanism</span><span class="topic">deep-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 10.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/nexu-io/open-design" target="_blank">nexu-io/open-design</a></div>
+        <div class="desc">🎨 The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images & video — real files, HTML/PDF/PPTX/MP4 export. 🤖 Claude Code / Codex / Cursor / Gemini / OpenCode / Qwen & 20+ CLIs via BYOK.</div>
+        <div class="topics"><span class="topic">agent-skills</span><span class="topic">ai-agents</span><span class="topic">ai-design</span><span class="topic">byok</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 8.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/ai-agents-for-beginners" target="_blank">microsoft/ai-agents-for-beginners</a></div>
+        <div class="desc">18 Lessons to Get Started Building AI Agents</div>
+        <div class="topics"><span class="topic">agentic-ai</span><span class="topic">agentic-framework</span><span class="topic">agentic-rag</span><span class="topic">ai-agents</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 7.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/asgeirtj/system_prompts_leaks" target="_blank">asgeirtj/system_prompts_leaks</a></div>
+        <div class="desc">Extracted system prompts from Anthropic - Claude Fable 5, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-5.6-Sol, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">ai-prompts</span><span class="topic">anthropic</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 6.2w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mudler/LocalAI" target="_blank">mudler/LocalAI</a></div>
+        <div class="desc">LocalAI is the open-source AI engine. Run any model - LLMs, vision, voice, image, video - on any hardware. No GPU required.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">api</span><span class="topic">audio-generation</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+          <span class="stars">⭐ 4.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank">rohitg00/ai-engineering-from-scratch</a></div>
+        <div class="desc">Learn it. Build it. Ship it for others.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">ai-engineering</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4.5w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langchain-ai/langgraph" target="_blank">langchain-ai/langgraph</a></div>
+        <div class="desc">Build resilient agents.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">chatgpt</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/huggingface/diffusers" target="_blank">huggingface/diffusers</a></div>
+        <div class="desc">🤗 Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch.</div>
+        <div class="topics"><span class="topic">deep-learning</span><span class="topic">diffusion</span><span class="topic">flux</span><span class="topic">image-generation</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.4w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/NirDiamant/RAG_Techniques" target="_blank">NirDiamant/RAG_Techniques</a></div>
+        <div class="desc">This repository showcases various advanced techniques for Retrieval-Augmented Generation (RAG) systems. Each technique has a detailed notebook tutorial.</div>
+        <div class="topics"><span class="topic">agentic-rag</span><span class="topic">ai</span><span class="topic">embeddings</span><span class="topic">generative-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 2.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/invoke-ai/InvokeAI" target="_blank">invoke-ai/InvokeAI</a></div>
+        <div class="desc">Invoke is a leading creative engine for Stable Diffusion models, empowering professionals, artists, and enthusiasts to generate and create visual media using the latest AI-driven technologies. The solution offers an industry leading WebUI, and serves as the foundation for multiple commercial products.</div>
+        <div class="topics"><span class="topic">ai-art</span><span class="topic">artificial-intelligence</span><span class="topic">generative-art</span><span class="topic">image-generation</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 2.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/openvinotoolkit/openvino" target="_blank">openvinotoolkit/openvino</a></div>
+        <div class="desc">OpenVINO™ is an open source toolkit for optimizing and deploying AI inference</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">computer-vision</span><span class="topic">deep-learning</span><span class="topic">deploy-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 1.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/LykosAI/StabilityMatrix" target="_blank">LykosAI/StabilityMatrix</a></div>
+        <div class="desc">Multi-Platform Package Manager for Stable Diffusion</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">automatic1111</span><span class="topic">avalonia</span><span class="topic">comfyui</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>C#</span>
+          <span class="stars">⭐ 8.6k</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/MochiDiffusion/MochiDiffusion" target="_blank">MochiDiffusion/MochiDiffusion</a></div>
+        <div class="desc">Run Stable Diffusion on Mac natively</div>
+        <div class="topics"><span class="topic">ane</span><span class="topic">apple</span><span class="topic">apple-silicon</span><span class="topic">coreml</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Swift</span>
+          <span class="stars">⭐ 7.9k</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/civitai/civitai" target="_blank">civitai/civitai</a></div>
+        <div class="desc">A repository of models, textual inversions, and more</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">social-network</span><span class="topic">stable-diffusion</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 7.2k</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/vladmandic/sdnext" target="_blank">vladmandic/sdnext</a></div>
+        <div class="desc">SD.Next: All-in-one WebUI for AI generative image and video creation, captioning and processing</div>
+        <div class="topics"><span class="topic">ai-art</span><span class="topic">caption</span><span class="topic">diffusers</span><span class="topic">generative-art</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 7.2k</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/leejet/stable-diffusion.cpp" target="_blank">leejet/stable-diffusion.cpp</a></div>
+        <div class="desc">Diffusion model(SD,Flux,Wan,Qwen Image,Z-Image,...) inference in pure C/C++</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">cplusplus</span><span class="topic">diffusion</span><span class="topic">flux</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 6.6k</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🔧 ML 工具 / 框架
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">ML 框架、训练工具、推理引擎、向量数据库</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/tensorflow/tensorflow" target="_blank">tensorflow/tensorflow</a></div>
+        <div class="desc">An Open Source Machine Learning Framework for Everyone</div>
+        <div class="topics"><span class="topic">deep-learning</span><span class="topic">deep-neural-networks</span><span class="topic">distributed</span><span class="topic">machine-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 19.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/f/prompts.chat" target="_blank">f/prompts.chat</a></div>
+        <div class="desc">f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">artificial-intelligence</span><span class="topic">awesome-list</span><span class="topic">chatgpt</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>HTML</span>
+          <span class="stars">⭐ 16.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/huggingface/transformers" target="_blank">huggingface/transformers</a></div>
+        <div class="desc">🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. </div>
+        <div class="topics"><span class="topic">audio</span><span class="topic">deep-learning</span><span class="topic">deepseek</span><span class="topic">gemma</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 16.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Comfy-Org/ComfyUI" target="_blank">Comfy-Org/ComfyUI</a></div>
+        <div class="desc">The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">comfy</span><span class="topic">comfyui</span><span class="topic">python</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 12.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/pytorch/pytorch" target="_blank">pytorch/pytorch</a></div>
+        <div class="desc">Tensors and Dynamic neural networks in Python with strong GPU acceleration</div>
+        <div class="topics"><span class="topic">autograd</span><span class="topic">deep-learning</span><span class="topic">gpu</span><span class="topic">machine-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 10.2w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/rasbt/LLMs-from-scratch" target="_blank">rasbt/LLMs-from-scratch</a></div>
+        <div class="desc">Implement a ChatGPT-like LLM in PyTorch from scratch, step by step</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">artificial-intelligence</span><span class="topic">attention-mechanism</span><span class="topic">deep-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 10.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/opencv/opencv" target="_blank">opencv/opencv</a></div>
+        <div class="desc">Open Source Computer Vision Library</div>
+        <div class="topics"><span class="topic">c-plus-plus</span><span class="topic">computer-vision</span><span class="topic">deep-learning</span><span class="topic">image-processing</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 9.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/ML-For-Beginners" target="_blank">microsoft/ML-For-Beginners</a></div>
+        <div class="desc">12 weeks, 26 lessons, 52 quizzes, classic Machine Learning for all</div>
+        <div class="topics"><span class="topic">data-science</span><span class="topic">education</span><span class="topic">machine-learning</span><span class="topic">machine-learning-algorithms</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 8.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/vllm-project/vllm" target="_blank">vllm-project/vllm</a></div>
+        <div class="desc">A high-throughput and memory-efficient inference and serving engine for LLMs</div>
+        <div class="topics"><span class="topic">amd</span><span class="topic">blackwell</span><span class="topic">cuda</span><span class="topic">deepseek</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 8.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/netdata/netdata" target="_blank">netdata/netdata</a></div>
+        <div class="desc">The fastest path to AI-powered full stack observability, even for lean teams.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">alerting</span><span class="topic">cncf</span><span class="topic">data-visualization</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+          <span class="stars">⭐ 8.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/tesseract-ocr/tesseract" target="_blank">tesseract-ocr/tesseract</a></div>
+        <div class="desc">Tesseract Open Source OCR Engine (main repository)</div>
+        <div class="topics"><span class="topic">hacktoberfest</span><span class="topic">lstm</span><span class="topic">machine-learning</span><span class="topic">ocr</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 7.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/OpenBB-finance/OpenBB" target="_blank">OpenBB-finance/OpenBB</a></div>
+        <div class="desc">Open Data Platform for analysts, quants and AI agents.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">crypto</span><span class="topic">derivatives</span><span class="topic">economics</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 7.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/scikit-learn/scikit-learn" target="_blank">scikit-learn/scikit-learn</a></div>
+        <div class="desc">scikit-learn: machine learning in Python</div>
+        <div class="topics"><span class="topic">data-analysis</span><span class="topic">data-science</span><span class="topic">machine-learning</span><span class="topic">python</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/keras-team/keras" target="_blank">keras-team/keras</a></div>
+        <div class="desc">Deep Learning for humans</div>
+        <div class="topics"><span class="topic">data-science</span><span class="topic">deep-learning</span><span class="topic">jax</span><span class="topic">machine-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6.4w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Mintplex-Labs/anything-llm" target="_blank">Mintplex-Labs/anything-llm</a></div>
+        <div class="desc">Stop renting your intelligence. Own it with AnythingLLM. Everything you need for a powerful local-first agent experience </div>
+        <div class="topics"><span class="topic">agent-computer</span><span class="topic">agent-harness</span><span class="topic">agent-orchestration</span><span class="topic">agentic-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 6.4w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ultralytics/ultralytics" target="_blank">ultralytics/ultralytics</a></div>
+        <div class="desc">Ultralytics YOLO26, YOLO11, YOLOv8 — object detection, instance segmentation, semantic segmentation, image classification, pose estimation, object tracking</div>
+        <div class="topics"><span class="topic">computer-vision</span><span class="topic">deep-learning</span><span class="topic">image-classification</span><span class="topic">instance-segmentation</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/meilisearch/meilisearch" target="_blank">meilisearch/meilisearch</a></div>
+        <div class="desc">A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">api</span><span class="topic">app-search</span><span class="topic">database</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+          <span class="stars">⭐ 5.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ultralytics/yolov5" target="_blank">ultralytics/yolov5</a></div>
+        <div class="desc">Ultralytics YOLOv5 in PyTorch for object detection, instance segmentation, classification, training, and export.</div>
+        <div class="topics"><span class="topic">computer-vision</span><span class="topic">coreml</span><span class="topic">deep-learning</span><span class="topic">image-classification</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/run-llama/llama_index" target="_blank">run-llama/llama_index</a></div>
+        <div class="desc">LlamaIndex is the leading document agent and OCR platform</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">application</span><span class="topic">data</span><span class="topic">fine-tuning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/roboflow/supervision" target="_blank">roboflow/supervision</a></div>
+        <div class="desc">We write your reusable computer vision tools. 💜</div>
+        <div class="topics"><span class="topic">classification</span><span class="topic">coco</span><span class="topic">computer-vision</span><span class="topic">deep-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📊 语言分布</div>
+    <div class="lang-chart">
+      <div class="lang-bar">
+        <span class="lang-name">Python</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%;background:#3572A5">50</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">TypeScript</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:36%;background:#3178c6">18</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Jupyter Notebook</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:14%;background:#DA5B0B">7</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">JavaScript</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:12%;background:#f1e05a">6</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">C++</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:10%;background:#f34b7d">5</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Shell</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:8%;background:#89e051">4</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Go</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:8%;background:#00ADD8">4</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Rust</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:4%;background:#dea584">2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Generated by GitHub AI Monitor · 2026-07-31</p>
+    <p>数据来源：GitHub Trending Page + GitHub Search API</p>
+  </div>
+</div>
+</body>
+</html>
