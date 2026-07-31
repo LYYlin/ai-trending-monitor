@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub AI 热点日报 - 2026-07-31</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f6f8fa;
+    color: #1f2328;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* 顶部概览 */
+  .header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.2);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 14px; opacity: 0.9; }
+  .stats-bar {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px 20px;
+    backdrop-filter: blur(4px);
+  }
+  .stat-item .num { font-size: 24px; font-weight: 700; }
+  .stat-item .label { font-size: 12px; opacity: 0.85; }
+
+  /* 板块 */
+  .section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .count {
+    font-size: 13px;
+    font-weight: 400;
+    color: #656d76;
+    background: #eaeef2;
+    border-radius: 12px;
+    padding: 2px 10px;
+  }
+
+  /* 项目卡片 */
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .repo-card {
+    border: 1px solid #d0d7de;
+    border-radius: 12px;
+    padding: 16px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  .repo-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #0969da;
+  }
+  .repo-card .name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .repo-card .name a {
+    color: #0969da;
+    text-decoration: none;
+  }
+  .repo-card .name a:hover { text-decoration: underline; }
+  .repo-card .desc {
+    font-size: 13px;
+    color: #656d76;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 38px;
+  }
+  .repo-card .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #656d76;
+    margin-top: auto;
+    flex-wrap: wrap;
+  }
+  .repo-card .meta .lang {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .repo-card .meta .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .repo-card .stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    color: #1f2328;
+  }
+  .repo-card .growth {
+    color: #1a7f37;
+    font-size: 11px;
+    font-weight: 600;
+    background: #dafbe1;
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+  .repo-card .source-tag {
+    font-size: 10px;
+    color: #656d76;
+    background: #f6f8fa;
+    border-radius: 8px;
+    padding: 1px 6px;
+  }
+  .repo-card .topics {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .repo-card .topic {
+    font-size: 11px;
+    color: #0969da;
+    background: #ddf4ff;
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+
+  /* 语言分布图 */
+  .lang-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .lang-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .lang-bar .lang-name {
+    width: 100px;
+    font-size: 13px;
+    text-align: right;
+  }
+  .lang-bar .bar-track {
+    flex: 1;
+    background: #eaeef2;
+    border-radius: 6px;
+    height: 20px;
+    overflow: hidden;
+  }
+  .lang-bar .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 11px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .footer {
+    text-align: center;
+    color: #656d76;
+    font-size: 12px;
+    padding: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .repo-grid { grid-template-columns: 1fr; }
+    .stats-bar { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🔥 GitHub AI 热点日报</h1>
+    <div class="date">📅 2026-07-31 · 自动监控 · 数据来源：GitHub Trending + Search API</div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="num">85</div>
+        <div class="label">追踪项目</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">20</div>
+        <div class="label">今日 Trending</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">5</div>
+        <div class="label">快速上升</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">6.1w</div>
+        <div class="label">平均 Star</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🔥 今日热门
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">近期活跃的高星 AI 项目（Trending / API）</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/affaan-m/ECC" target="_blank">affaan-m/ECC</a></div>
+        <div class="desc">The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 23.6w</span>
+          <span class="growth">+804 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mattpocock/skills" target="_blank">mattpocock/skills</a></div>
+        <div class="desc">Skills for Real Engineers. Straight from my .agents directory.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 19.6w</span>
+          <span class="growth">+1.2w ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank">harry0703/MoneyPrinterTurbo</a></div>
+        <div class="desc">利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 10.1w</span>
+          <span class="growth">+403 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/PaddlePaddle/PaddleOCR" target="_blank">PaddlePaddle/PaddleOCR</a></div>
+        <div class="desc">Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 8.7w</span>
+          <span class="growth">+93 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/earendil-works/pi" target="_blank">earendil-works/pi</a></div>
+        <div class="desc">AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 8.1w</span>
+          <span class="growth">+4.8k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/koala73/worldmonitor" target="_blank">koala73/worldmonitor</a></div>
+        <div class="desc">Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 7.7w</span>
+          <span class="growth">+6.2k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ansible/ansible" target="_blank">ansible/ansible</a></div>
+        <div class="desc">Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy and maintain. Automate everything from code deployment to network configuration to cloud management, in a language that approaches plain English, using SSH, with no agents to install on remote systems.https://docs.ansible.com.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 7.0w</span>
+          <span class="growth">+29 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Panniantong/Agent-Reach" target="_blank">Panniantong/Agent-Reach</a></div>
+        <div class="desc">Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6.3w</span>
+          <span class="growth">+543 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/deepfakes/faceswap" target="_blank">deepfakes/faceswap</a></div>
+        <div class="desc">Deepfakes Software For All</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.7w</span>
+          <span class="growth">+619 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mvanhorn/last30days-skill" target="_blank">mvanhorn/last30days-skill</a></div>
+        <div class="desc">AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.6w</span>
+          <span class="growth">+378 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/AI-For-Beginners" target="_blank">microsoft/AI-For-Beginners</a></div>
+        <div class="desc">12 Weeks, 24 Lessons, AI for All!</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 5.4w</span>
+          <span class="growth">+155 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/lllyasviel/Fooocus" target="_blank">lllyasviel/Fooocus</a></div>
+        <div class="desc">Focus on prompting and generating</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.2w</span>
+          <span class="growth">+63 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/microsoft/VibeVoice" target="_blank">microsoft/VibeVoice</a></div>
+        <div class="desc">Open-Source Frontier Voice AI</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5.2w</span>
+          <span class="growth">+484 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank">ChromeDevTools/chrome-devtools-mcp</a></div>
+        <div class="desc">Chrome DevTools for coding agents</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 4.8w</span>
+          <span class="growth">+80 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/moeru-ai/airi" target="_blank">moeru-ai/airi</a></div>
+        <div class="desc">💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 4.6w</span>
+          <span class="growth">+2.8k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/streamlit/streamlit" target="_blank">streamlit/streamlit</a></div>
+        <div class="desc">Streamlit — A faster way to build and share data apps.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4.5w</span>
+          <span class="growth">+37 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/github/awesome-copilot" target="_blank">github/awesome-copilot</a></div>
+        <div class="desc">Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.7w</span>
+          <span class="growth">+54 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank">diegosouzapw/OmniRoute</a></div>
+        <div class="desc">Never stop coding. Free MIT AI gateway: one endpoint, 290+ providers (90+ free), 500+ models — Kimi, Claude, GPT, OpenAI, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, Desktop/PWA. Built by 500+ contributors</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 3.5w</span>
+          <span class="growth">+8.5k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/shiyu-coder/Kronos" target="_blank">shiyu-coder/Kronos</a></div>
+        <div class="desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.5w</span>
+          <span class="growth">+2.3k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/hasura/graphql-engine" target="_blank">hasura/graphql-engine</a></div>
+        <div class="desc">Blazing fast, instant realtime GraphQL APIs on all your data with fine grained access control, also trigger webhooks on database events.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 3.2w</span>
+          <span class="growth">+1 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      ⚡ 快速上升
+      <span class="count">5 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">近 7 天创建且 Star > 50 的新项目</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/0xwilliamortiz/openclaude-improved" target="_blank">0xwilliamortiz/openclaude-improved</a></div>
+        <div class="desc">runs anywhere. uses anything</div>
+        <div class="topics"><span class="topic">agentic-ai</span><span class="topic">ai</span><span class="topic">ai-agent</span><span class="topic">ai-coding</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 562</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/deerwork-ai/deer-workflow" target="_blank">deerwork-ai/deer-workflow</a></div>
+        <div class="desc">An open-source graph engineering runtime that keeps orchestration in TypeScript and delegates semantic work to replaceable Agent runtimes.</div>
+        <div class="topics"><span class="topic">agent</span><span class="topic">ai</span><span class="topic">ai-agent</span><span class="topic">ai-agents</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 358</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/aigclink/geolook" target="_blank">aigclink/geolook</a></div>
+        <div class="desc">Open-source end-to-end GEO implementation: status analysis, diagnosis, strategy, tickets, execution, verification</div>
+        <div class="topics"><span class="topic">ai-search</span><span class="topic">generative-engine-optimization</span><span class="topic">geo</span><span class="topic">llm</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 130</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/miuuyy/codex-chatgpt-web" target="_blank">miuuyy/codex-chatgpt-web</a></div>
+        <div class="desc">Use ChatGPT Pro as a native model in the Codex app — with context, compaction, streaming, images, and optional MCP tools.</div>
+        <div class="topics"><span class="topic">chatgpt</span><span class="topic">chatgpt-pro</span><span class="topic">codex</span><span class="topic">free-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 73</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/hardrave/NIGHTRUN" target="_blank">hardrave/NIGHTRUN</a></div>
+        <div class="desc">Boot your PC straight into an LLM. Rust, UEFI-resident, no operating system underneath.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">genai</span><span class="topic">llama-cpp</span><span class="topic">llm</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+          <span class="stars">⭐ 51</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🤖 LLM / Agent
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">大语言模型、Agent 框架、RAG、提示工程</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw/openclaw</a></div>
+        <div class="desc">Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 </div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">assistant</span><span class="topic">crustacean</span><span class="topic">molty</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 38.5w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/obra/superpowers" target="_blank">obra/superpowers</a></div>
+        <div class="desc">An agentic skills framework & software development methodology that works.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">brainstorming</span><span class="topic">coding</span><span class="topic">obra</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 26.4w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/affaan-m/ECC" target="_blank">affaan-m/ECC</a></div>
+        <div class="desc">The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</div>
+        <div class="topics"><span class="topic">ai-agents</span><span class="topic">anthropic</span><span class="topic">claude</span><span class="topic">claude-code</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 23.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/NousResearch/hermes-agent" target="_blank">NousResearch/hermes-agent</a></div>
+        <div class="desc">The agent that grows with you</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-agent</span><span class="topic">ai-agents</span><span class="topic">anthropic</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 22.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/n8n-io/n8n" target="_blank">n8n-io/n8n</a></div>
+        <div class="desc">Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">apis</span><span class="topic">automation</span><span class="topic">cli</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 19.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/mattpocock/skills" target="_blank">mattpocock/skills</a></div>
+        <div class="desc">Skills for Real Engineers. Straight from my .agents directory.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 19.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/anomalyco/opencode" target="_blank">anomalyco/opencode</a></div>
+        <div class="desc">The open source coding agent.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 19.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank">Significant-Gravitas/AutoGPT</a></div>
+        <div class="desc">AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</div>
+        <div class="topics"><span class="topic">agentic-ai</span><span class="topic">agents</span><span class="topic">ai</span><span class="topic">artificial-intelligence</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 18.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/f/prompts.chat" target="_blank">f/prompts.chat</a></div>
+        <div class="desc">f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">artificial-intelligence</span><span class="topic">awesome-list</span><span class="topic">chatgpt</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>HTML</span>
+          <span class="stars">⭐ 16.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Snailclimb/JavaGuide" target="_blank">Snailclimb/JavaGuide</a></div>
+        <div class="desc">Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发</div>
+        <div class="topics"><span class="topic">agent</span><span class="topic">ai</span><span class="topic">context-engineering</span><span class="topic">deepseek</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 15.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langflow-ai/langflow" target="_blank">langflow-ai/langflow</a></div>
+        <div class="desc">Langflow is a powerful tool for building and deploying AI-powered agents and workflows.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">chatgpt</span><span class="topic">generative-ai</span><span class="topic">large-language-models</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 15.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langgenius/dify" target="_blank">langgenius/dify</a></div>
+        <div class="desc">Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.</div>
+        <div class="topics"><span class="topic">agent</span><span class="topic">agentic-ai</span><span class="topic">agentic-framework</span><span class="topic">agentic-workflow</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 15.1w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/open-webui/open-webui" target="_blank">open-webui/open-webui</a></div>
+        <div class="desc">User-friendly AI Interface (Supports Ollama, OpenAI API, ...)</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">llm</span><span class="topic">llm-ui</span><span class="topic">llm-webui</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/langchain-ai/langchain" target="_blank">langchain-ai/langchain</a></div>
+        <div class="desc">The agent engineering platform.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">anthropic</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.3w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/anthropics/claude-code" target="_blank">anthropics/claude-code</a></div>
+        <div class="desc">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 14.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/msitarzewski/agency-agents" target="_blank">msitarzewski/agency-agents</a></div>
+        <div class="desc">A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+          <span class="stars">⭐ 13.8w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank">Shubhamsaboo/awesome-llm-apps</a></div>
+        <div class="desc">100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">llms</span><span class="topic">python</span><span class="topic">rag</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 12.9w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ggml-org/llama.cpp" target="_blank">ggml-org/llama.cpp</a></div>
+        <div class="desc">LLM inference in C/C++</div>
+        <div class="topics"><span class="topic">ggml</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 12.2w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/browser-use/browser-use" target="_blank">browser-use/browser-use</a></div>
+        <div class="desc">🌐 Make websites accessible for AI agents. Automate tasks online with ease.</div>
+        <div class="topics"><span class="topic">ai-agents</span><span class="topic">ai-tools</span><span class="topic">browser-automation</span><span class="topic">browser-use</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 10.7w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/google-gemini/gemini-cli" target="_blank">google-gemini/gemini-cli</a></div>
+        <div class="desc">An open-source AI agent that brings the power of Gemini directly into your terminal.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-agents</span><span class="topic">cli</span><span class="topic">gemini</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 10.6w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🎨 AIGC 生成式
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">图像/视频/3D/音乐生成、Stable Diffusion 等</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/VantageInc/LucyLive-AI-Render" target="_blank">VantageInc/LucyLive-AI-Render</a></div>
+        <div class="desc">Real-time AI creative preview plugin for Cinema 4D</div>
+        <div class="topics"><span class="topic">ai-rendering</span><span class="topic">cinema4d</span><span class="topic">generative-ai</span><span class="topic">plugin</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 15</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Ding-sl/ComfyUI-LinkSpotlight" target="_blank">Ding-sl/ComfyUI-LinkSpotlight</a></div>
+        <div class="desc">Alt+H spotlight for ComfyUI — hide or dim every link that doesn't touch the selected node. Declutter spaghetti workflows with one remappable shortcut. Frontend-only, zero nodes, zero dependencies.</div>
+        <div class="topics"><span class="topic">comfyui</span><span class="topic">comfyui-custom-node</span><span class="topic">comfyui-extension</span><span class="topic">litegraph</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 15</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/filliptm/ComfyUI-FL-SeedVR2" target="_blank">filliptm/ComfyUI-FL-SeedVR2</a></div>
+        <div class="desc">SeedVR2 1.4B image restoration and upscaling nodes for ComfyUI</div>
+        <div class="topics"><span class="topic">comfyui</span><span class="topic">comfyui-custom-node</span><span class="topic">image-upscaling</span><span class="topic">seedvr2</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 12</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/AhmadHassan-BTed/OpenOPC-Shadow-Adapter" target="_blank">AhmadHassan-BTed/OpenOPC-Shadow-Adapter</a></div>
+        <div class="desc">Zero-modification Human-in-the-Loop adapter for OpenOPC's agentic DAG runtime. Park work items for human review. Resume execution automatically. No timeouts.</div>
+        <div class="topics"><span class="topic">agentic-ai</span><span class="topic">agentic-workflow</span><span class="topic">ai-employee</span><span class="topic">ai-native</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 8</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/ScryptHunter/ComfyUI-PrunaVAED" target="_blank">ScryptHunter/ComfyUI-PrunaVAED</a></div>
+        <div class="desc">Native ComfyUI loader and benchmark nodes for the accelerated PrunaAI PrunaVAED LTX-2.3 video VAE.</div>
+        <div class="topics"><span class="topic">comfyui</span><span class="topic">ltx-2</span><span class="topic">ltx-video</span><span class="topic">vae</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 8</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/sjh9714/awesome-krea-2" target="_blank">sjh9714/awesome-krea-2</a></div>
+        <div class="desc">475 Krea 2 Turbo (krea2) prompts with the seed for each, plus the 65 that failed and why. 61 categories, MIT.</div>
+        <div class="topics"><span class="topic">ai-art</span><span class="topic">ai-prompts</span><span class="topic">awesome</span><span class="topic">awesome-list</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>HTML</span>
+          <span class="stars">⭐ 7</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/pablo-reyes8/kimi-k3-pytorch" target="_blank">pablo-reyes8/kimi-k3-pytorch</a></div>
+        <div class="desc">Build and train a mini Kimi K3 from scratch — a pure-PyTorch playground from a custom 88M model to 2T-scale LLM profiles.</div>
+        <div class="topics"><span class="topic">deep-learning</span><span class="topic">generative-ai</span><span class="topic">kimi-k3</span><span class="topic">kv-cache</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/himanshu231204/prompt-engineering-mastery" target="_blank">himanshu231204/prompt-engineering-mastery</a></div>
+        <div class="desc">Production-grade prompt engineering curriculum — 7 modules covering foundations, reasoning, RAG, security, and evaluation. Model-agnostic (OpenAI/Anthropic/Ollama), runnable notebooks, mini-projects, Mermaid diagrams. Not prompt tips — prompt engineering as a discipline.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">anthropic</span><span class="topic">chatgpt</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/sumitsingh4411/ai-roadmap" target="_blank">sumitsingh4411/ai-roadmap</a></div>
+        <div class="desc">A free, open-source roadmap to learn AI from zero — 34 lessons from your first line of Python to shipping an LLM app. Read on the web or straight from the Markdown.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-for-beginners</span><span class="topic">artificial-intelligence</span><span class="topic">data-science</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Astro</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/arunbalajiraju-proc/procurement-ai-assistant" target="_blank">arunbalajiraju-proc/procurement-ai-assistant</a></div>
+        <div class="desc">An open library of reusable AI skills for procurement, sourcing, contracting and supplier management.</div>
+        <div class="topics"><span class="topic">agent-skills</span><span class="topic">contract-management</span><span class="topic">digital-procurement</span><span class="topic">generative-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Unknown</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/xDarkzx/SongForge-MCP" target="_blank">xDarkzx/SongForge-MCP</a></div>
+        <div class="desc">Generate original AI music tracks via Claude Desktop — MCP server powered by ACE-Step 1.5, with vocal/instrumental stem splitting and reference-style matching. No music software or AI/ML knowledge needed.</div>
+        <div class="topics"><span class="topic">ace-step</span><span class="topic">ai-music</span><span class="topic">anthropic</span><span class="topic">audio</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Rinne414/lora-training-skill" target="_blank">Rinne414/lora-training-skill</a></div>
+        <div class="desc">Bring a folder of images, leave with a trained LoRA. Agent skills (SKILL.md) for quality-gated LoRA training: dataset doctor + safe fixer + one-confirmation training orchestration for SD-Trainer / lora-scripts-next. Anima-first, SD1.5/SDXL/Flux.</div>
+        <div class="topics"><span class="topic">agent-skills</span><span class="topic">anima</span><span class="topic">civitai</span><span class="topic">claude-code</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Anil-matcha/midjourney-comfyui" target="_blank">Anil-matcha/midjourney-comfyui</a></div>
+        <div class="desc">ComfyUI custom nodes for Midjourney V7, V8 and Niji via muapi.ai — 4 images per run, reference image support, one x-api-key header.</div>
+        <div class="topics"><span class="topic">ai-art</span><span class="topic">ai-image-generation</span><span class="topic">ai-tools</span><span class="topic">anime</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/PierreDenaes/minecraft-photo-builder" target="_blank">PierreDenaes/minecraft-photo-builder</a></div>
+        <div class="desc">🏗️ Bot Minecraft (Mineflayer) qui construit en jeu depuis une photo, un modèle 3D ou un simple texte. Vision & architecture pilotées par Claude, géométrie & physique par des passes mécaniques testées. Fresques, statues, bâtiments habitables. ~495 tests.</div>
+        <div class="topics"><span class="topic">ai-agent</span><span class="topic">anthropic</span><span class="topic">claude</span><span class="topic">generative-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+          <span class="stars">⭐ 3</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/DrBearJew/trellis2-convrot-rocm" target="_blank">DrBearJew/trellis2-convrot-rocm</a></div>
+        <div class="desc">Reproducible TRELLIS.2 INT8 ConvRot patches for ComfyUI on AMD ROCm gfx1100</div>
+        <div class="topics"><span class="topic">amd</span><span class="topic">comfyui</span><span class="topic">int8</span><span class="topic">rocm</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 2</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/SayyadAnasAli/generative-ai-blockchain" target="_blank">SayyadAnasAli/generative-ai-blockchain</a></div>
+        <div class="desc">Generative AI notebook (text, image, speech, video, PPT) with blockchain-based logging of every generation request, built on Google Colab.</div>
+        <div class="topics"><span class="topic">ai-blockchain</span><span class="topic">blockchain</span><span class="topic">gemini-api</span><span class="topic">generative-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 1</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/giancarlobrusca/local-img" target="_blank">giancarlobrusca/local-img</a></div>
+        <div class="desc">Local text-to-image generation on your own GPU. Prompt in a browser, PNG out. No API keys, no cloud, runs fully offline after the first weight download.</div>
+        <div class="topics"><span class="topic">apple-silicon</span><span class="topic">diffusers</span><span class="topic">local-ai</span><span class="topic">mps</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 1</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/sandraschi/civitai-mcp" target="_blank">sandraschi/civitai-mcp</a></div>
+        <div class="desc">FastMCP bridge for Civitai: search and download checkpoints/LoRAs into a ComfyUI-compatible models depot. Dry-run default, human-approved download outbox.</div>
+        <div class="topics"><span class="topic">civitai</span><span class="topic">comfyui</span><span class="topic">fastmcp</span><span class="topic">generative-ai</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 1</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/tenpel/ComfyUI-PS-Composite" target="_blank">tenpel/ComfyUI-PS-Composite</a></div>
+        <div class="desc">Photoshop-style object compositing for ComfyUI, built on FLUX.2 Klein. Places a cut-out into a background plate and generates only the lighting, reflections and contact shadows — everything outside the mask stays bit-identical, at full resolution and in the original colour space.</div>
+        <div class="topics"><span class="topic">comfyui</span><span class="topic">comfyui-workflow</span><span class="topic">compositing</span><span class="topic">flux</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Unknown</span>
+          <span class="stars">⭐ 1</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/stuttlepress/comfyui-frontend-unsuck" target="_blank">stuttlepress/comfyui-frontend-unsuck</a></div>
+        <div class="desc">Applies source-level patches to the ComfyUI Nodes 2.0 web frontend and deploys them as a custom frontend version</div>
+        <div class="topics"><span class="topic">comfyui</span><span class="topic">frontend</span><span class="topic">patch-management</span><span class="topic">patcher</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 1</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      🔧 ML 工具 / 框架
+      <span class="count">20 个项目</span>
+    </div>
+    <p style="font-size:13px;color:#656d76;margin-bottom:16px;">ML 框架、训练工具、推理引擎、向量数据库</p>
+    <div class="repo-grid">
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/rasbt/LLMs-from-scratch" target="_blank">rasbt/LLMs-from-scratch</a></div>
+        <div class="desc">Implement a ChatGPT-like LLM in PyTorch from scratch, step by step</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">artificial-intelligence</span><span class="topic">attention-mechanism</span><span class="topic">deep-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 10.0w</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/shiyu-coder/Kronos" target="_blank">shiyu-coder/Kronos</a></div>
+        <div class="desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 3.5w</span>
+          <span class="growth">+2.3k ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/modelcontextprotocol/typescript-sdk" target="_blank">modelcontextprotocol/typescript-sdk</a></div>
+        <div class="desc">The official TypeScript SDK for Model Context Protocol servers and clients</div>
+        
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 1.3w</span>
+          <span class="growth">+17 ⭐</span>
+          <span class="source-tag">Trending</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/zju3dv/INTACT-JEPA" target="_blank">zju3dv/INTACT-JEPA</a></div>
+        <div class="desc">INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models.</div>
+        <div class="topics"><span class="topic">goal-conditioned-control</span><span class="topic">imitation-learning</span><span class="topic">jepa</span><span class="topic">latent-dynamics</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 42</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/lucidrains/robo_ttt" target="_blank">lucidrains/robo_ttt</a></div>
+        <div class="desc">Implementation of RoboTTT proposed by Yunfan Jiang et al. of Stanford and Nvidia</div>
+        <div class="topics"><span class="topic">artificial-intelligence</span><span class="topic">deep-learning</span><span class="topic">robotics</span><span class="topic">test-time-training</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 30</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/YutongChenVictor/NPU-E2E" target="_blank">YutongChenVictor/NPU-E2E</a></div>
+        <div class="desc">End-to-End NPU: RTL systolic array → AXI4 SoC → TVM compiler → FPGA inference</div>
+        <div class="topics"><span class="topic">axidma</span><span class="topic">deep-learning</span><span class="topic">fpga</span><span class="topic">npu</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Verilog</span>
+          <span class="stars">⭐ 19</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Zazza/svoi-oss" target="_blank">Zazza/svoi-oss</a></div>
+        <div class="desc">Self-hosted, open-source personal AI assistant — streaming chat with agentic tools, long-term memory, RAG, tasks & reminders. Go + Vue 3 + PostgreSQL/pgvector. AGPL-3.0.</div>
+        <div class="topics"><span class="topic">agentic</span><span class="topic">agents</span><span class="topic">ai-assistant</span><span class="topic">assistant</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+          <span class="stars">⭐ 9</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/aznikline/from-minimind-to-more-notes" target="_blank">aznikline/from-minimind-to-more-notes</a></div>
+        <div class="desc">对 Tongyun1/from-minimind-to-more 的逐篇结构化精读笔记(基石/架构/算法/求职,含思维导图与批判性批注)</div>
+        <div class="topics"><span class="topic">chinese</span><span class="topic">deep-learning</span><span class="topic">grpo</span><span class="topic">interview-prep</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Unknown</span>
+          <span class="stars">⭐ 7</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/DrDeathLabs/BuildLLM" target="_blank">DrDeathLabs/BuildLLM</a></div>
+        <div class="desc">Build and train three generations of decoder-only language models from scratch through a guided engineering learning lab.</div>
+        <div class="topics"><span class="topic">cuda</span><span class="topic">education</span><span class="topic">language-model</span><span class="topic">llm</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/pablo-reyes8/kimi-k3-pytorch" target="_blank">pablo-reyes8/kimi-k3-pytorch</a></div>
+        <div class="desc">Build and train a mini Kimi K3 from scratch — a pure-PyTorch playground from a custom 88M model to 2T-scale LLM profiles.</div>
+        <div class="topics"><span class="topic">deep-learning</span><span class="topic">generative-ai</span><span class="topic">kimi-k3</span><span class="topic">kv-cache</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/seingreen/STRADI" target="_blank">seingreen/STRADI</a></div>
+        <div class="desc">Official code and pretrained models for Real-time Violin Transcription for Score Following (ISMIR 2026)</div>
+        <div class="topics"><span class="topic">automatic-music-transcription</span><span class="topic">ismir-2026</span><span class="topic">music-information-retrieval</span><span class="topic">pytorch</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 6</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/billyrdavis1985-bot/hf-critic" target="_blank">billyrdavis1985-bot/hf-critic</a></div>
+        <div class="desc">Fine-tuning open-source LLMs into reasoning-process critics — QLoRA, held-out eval, controlled cross-model comparison. Part of the IRMB program.</div>
+        <div class="topics"><span class="topic">fine-tuning</span><span class="topic">llm</span><span class="topic">machine-learning</span><span class="topic">mlops</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/tamnd/soroban" target="_blank">tamnd/soroban</a></div>
+        <div class="desc">Learn to train neural networks by hand: paper arithmetic, asserted code, and a from-scratch Go autograd, one lesson at a time</div>
+        <div class="topics"><span class="topic">autograd</span><span class="topic">deep-learning</span><span class="topic">education</span><span class="topic">from-scratch</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+          <span class="stars">⭐ 5</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Harshit-Lalwani/Issue-Assignee-Recommender" target="_blank">Harshit-Lalwani/Issue-Assignee-Recommender</a></div>
+        <div class="desc">Two-stage recommender (BM25/embedding retrieval + LightGBM LambdaRank) that ranks the developers most likely to resolve a newly-filed Jira issue, built and evaluated on 130k real issues from 5 Apache/Jira projects.</div>
+        <div class="topics"><span class="topic">fastapi</span><span class="topic">jira</span><span class="topic">learning-to-rank</span><span class="topic">lightgbm</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/GlowLED/LeetGPU-for-VsCode" target="_blank">GlowLED/LeetGPU-for-VsCode</a></div>
+        <div class="desc">Solve LeetGPU challenges without leaving VS Code.</div>
+        <div class="topics"><span class="topic">deep-learning</span><span class="topic">gpu</span><span class="topic">kernel</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3178c6"></span>TypeScript</span>
+          <span class="stars">⭐ 5</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/Francium-Tech/CrispVoice" target="_blank">Francium-Tech/CrispVoice</a></div>
+        <div class="desc">Studio-quality voice enhancement that never uploads your voice. Local, open-source alternative to cloud podcast enhancers.</div>
+        <div class="topics"><span class="topic">audio</span><span class="topic">noise-reduction</span><span class="topic">podcast</span><span class="topic">privacy</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 5</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/appdess/dessmetal" target="_blank">appdess/dessmetal</a></div>
+        <div class="desc">Free macOS guitar amp simulator with parametric Neural Amp Modeler gain control — standalone, AUv2, and VST3.</div>
+        <div class="topics"><span class="topic">amp-simulator</span><span class="topic">audio-plugin</span><span class="topic">audiodsp</span><span class="topic">auv2</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/himanshu231204/prompt-engineering-mastery" target="_blank">himanshu231204/prompt-engineering-mastery</a></div>
+        <div class="desc">Production-grade prompt engineering curriculum — 7 modules covering foundations, reasoning, RAG, security, and evaluation. Model-agnostic (OpenAI/Anthropic/Ollama), runnable notebooks, mini-projects, Mermaid diagrams. Not prompt tips — prompt engineering as a discipline.</div>
+        <div class="topics"><span class="topic">agents</span><span class="topic">ai</span><span class="topic">anthropic</span><span class="topic">chatgpt</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/miroshArtem/acoustic-uav-trajectory-prediction" target="_blank">miroshArtem/acoustic-uav-trajectory-prediction</a></div>
+        <div class="desc">Terrain-aware simulation and ML pipeline for acoustic UAV localization, multilateration, and trajectory trend prediction.</div>
+        <div class="topics"><span class="topic">3d-localization</span><span class="topic">acoustic-localization</span><span class="topic">acoustics</span><span class="topic">deep-learning</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+      <div class="repo-card">
+        <div class="name"><a href="https://github.com/sumitsingh4411/ai-roadmap" target="_blank">sumitsingh4411/ai-roadmap</a></div>
+        <div class="desc">A free, open-source roadmap to learn AI from zero — 34 lessons from your first line of Python to shipping an LLM app. Read on the web or straight from the Markdown.</div>
+        <div class="topics"><span class="topic">ai</span><span class="topic">ai-for-beginners</span><span class="topic">artificial-intelligence</span><span class="topic">data-science</span></div>
+        <div class="meta">
+          <span class="lang"><span class="lang-dot" style="background:#8250df"></span>Astro</span>
+          <span class="stars">⭐ 4</span>
+          
+          <span class="source-tag">Search</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📊 语言分布</div>
+    <div class="lang-chart">
+      <div class="lang-bar">
+        <span class="lang-name">Python</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%;background:#3572A5">43</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">TypeScript</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:39%;background:#3178c6">17</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">JavaScript</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:11%;background:#f1e05a">5</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Shell</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:9%;background:#89e051">4</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Jupyter Notebook</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:9%;background:#DA5B0B">4</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">Unknown</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:6%;background:#8250df">3</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">HTML</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:4%;background:#8250df">2</div>
+        </div>
+      </div>
+      <div class="lang-bar">
+        <span class="lang-name">C++</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:4%;background:#f34b7d">2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Generated by GitHub AI Monitor · 2026-07-31</p>
+    <p>数据来源：GitHub Trending Page + GitHub Search API</p>
+  </div>
+</div>
+</body>
+</html>
