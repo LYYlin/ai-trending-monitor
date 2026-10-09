@@ -1,1049 +1,4 @@
 {
-  "2026-09-30": {
-    "repos": [
-      {
-        "full_name": "affaan-m/ECC",
-        "stars": 269755,
-        "stars_growth": 4169
-      },
-      {
-        "full_name": "NousResearch/hermes-agent",
-        "stars": 250133,
-        "stars_growth": 1972
-      },
-      {
-        "full_name": "Significant-Gravitas/AutoGPT",
-        "stars": 187621,
-        "stars_growth": 118
-      },
-      {
-        "full_name": "firecrawl/firecrawl",
-        "stars": 186769,
-        "stars_growth": 3266
-      },
-      {
-        "full_name": "ollama/ollama",
-        "stars": 181938,
-        "stars_growth": 438
-      },
-      {
-        "full_name": "huggingface/transformers",
-        "stars": 166835,
-        "stars_growth": 290
-      },
-      {
-        "full_name": "langgenius/dify",
-        "stars": 157547,
-        "stars_growth": 633
-      },
-      {
-        "full_name": "open-webui/open-webui",
-        "stars": 153592,
-        "stars_growth": 729
-      },
-      {
-        "full_name": "langchain-ai/langchain",
-        "stars": 147293,
-        "stars_growth": 390
-      },
-      {
-        "full_name": "harry0703/MoneyPrinterTurbo",
-        "stars": 127150,
-        "stars_growth": 1929
-      },
-      {
-        "full_name": "NousResearch/hermes-agent",
-        "stars": 250133,
-        "stars_growth": 1972
-      },
-      {
-        "full_name": "shareAI-lab/learn-claude-code",
-        "stars": 77824,
-        "stars_growth": 58
-      },
-      {
-        "full_name": "career-ops-hq/career-ops",
-        "stars": 73096,
-        "stars_growth": 635
-      },
-      {
-        "full_name": "ZhuLinsen/daily_stock_analysis",
-        "stars": 65801,
-        "stars_growth": 285
-      },
-      {
-        "full_name": "hugohe3/ppt-master",
-        "stars": 57058,
-        "stars_growth": 1029
-      },
-      {
-        "full_name": "CherryHQ/cherry-studio",
-        "stars": 52262,
-        "stars_growth": 170
-      },
-      {
-        "full_name": "bojieli/ai-agent-book",
-        "stars": 51813,
-        "stars_growth": 1652
-      },
-      {
-        "full_name": "HKUDS/nanobot",
-        "stars": 48692,
-        "stars_growth": 198
-      },
-      {
-        "full_name": "zhayujie/CowAgent",
-        "stars": 47179,
-        "stars_growth": 89
-      },
-      {
-        "full_name": "siyuan-note/siyuan",
-        "stars": 46571,
-        "stars_growth": 99
-      },
-      {
-        "full_name": "open-webui/open-webui",
-        "stars": 153592,
-        "stars_growth": 729
-      },
-      {
-        "full_name": "langchain-ai/langchain",
-        "stars": 147293,
-        "stars_growth": 390
-      },
-      {
-        "full_name": "Shubhamsaboo/awesome-llm-apps",
-        "stars": 140278,
-        "stars_growth": 805
-      },
-      {
-        "full_name": "Graphify-Labs/graphify",
-        "stars": 122553,
-        "stars_growth": 1926
-      },
-      {
-        "full_name": "thedotmack/claude-mem",
-        "stars": 94970,
-        "stars_growth": 471
-      },
-      {
-        "full_name": "infiniflow/ragflow",
-        "stars": 91520,
-        "stars_growth": 331
-      },
-      {
-        "full_name": "unclecode/crawl4ai",
-        "stars": 84507,
-        "stars_growth": 405
-      },
-      {
-        "full_name": "datawhalechina/hello-agents",
-        "stars": 81353,
-        "stars_growth": 831
-      },
-      {
-        "full_name": "headroomlabs-ai/headroom",
-        "stars": 74128,
-        "stars_growth": 575
-      },
-      {
-        "full_name": "Mintplex-Labs/anything-llm",
-        "stars": 66613,
-        "stars_growth": 267
-      },
-      {
-        "full_name": "langchain-ai/langchain",
-        "stars": 147293,
-        "stars_growth": 390
-      },
-      {
-        "full_name": "bytedance/deer-flow",
-        "stars": 83252,
-        "stars_growth": 374
-      },
-      {
-        "full_name": "headroomlabs-ai/headroom",
-        "stars": 74128,
-        "stars_growth": 575
-      },
-      {
-        "full_name": "BerriAI/litellm",
-        "stars": 59897,
-        "stars_growth": 464
-      },
-      {
-        "full_name": "langchain-ai/langgraph",
-        "stars": 42493,
-        "stars_growth": 335
-      },
-      {
-        "full_name": "langfuse/langfuse",
-        "stars": 35216,
-        "stars_growth": 265
-      },
-      {
-        "full_name": "langchain-ai/deepagents",
-        "stars": 29863,
-        "stars_growth": 190
-      },
-      {
-        "full_name": "mlflow/mlflow",
-        "stars": 28192,
-        "stars_growth": 84
-      },
-      {
-        "full_name": "NirDiamant/GenAI_Agents",
-        "stars": 24425,
-        "stars_growth": 22
-      },
-      {
-        "full_name": "1Panel-dev/MaxKB",
-        "stars": 22896,
-        "stars_growth": 13
-      },
-      {
-        "full_name": "NousResearch/hermes-agent",
-        "stars": 250133,
-        "stars_growth": 1972
-      },
-      {
-        "full_name": "langflow-ai/langflow",
-        "stars": 155382,
-        "stars_growth": 225
-      },
-      {
-        "full_name": "langchain-ai/langchain",
-        "stars": 147293,
-        "stars_growth": 390
-      },
-      {
-        "full_name": "microsoft/generative-ai-for-beginners",
-        "stars": 120809,
-        "stars_growth": 481
-      },
-      {
-        "full_name": "OpenHands/OpenHands",
-        "stars": 89571,
-        "stars_growth": 659
-      },
-      {
-        "full_name": "lobehub/lobehub",
-        "stars": 82912,
-        "stars_growth": 142
-      },
-      {
-        "full_name": "unslothai/unsloth",
-        "stars": 77059,
-        "stars_growth": 455
-      },
-      {
-        "full_name": "openai/openai-cookbook",
-        "stars": 76276,
-        "stars_growth": 143
-      },
-      {
-        "full_name": "code-yeongyu/oh-my-openagent",
-        "stars": 69665,
-        "stars_growth": 359
-      },
-      {
-        "full_name": "asgeirtj/system_prompts_leaks",
-        "stars": 68628,
-        "stars_growth": 526
-      },
-      {
-        "full_name": "Comfy-Org/ComfyUI",
-        "stars": 135542,
-        "stars_growth": 985
-      },
-      {
-        "full_name": "unslothai/unsloth",
-        "stars": 77059,
-        "stars_growth": 455
-      },
-      {
-        "full_name": "mudler/LocalAI",
-        "stars": 49333,
-        "stars_growth": 103
-      },
-      {
-        "full_name": "huggingface/diffusers",
-        "stars": 34637,
-        "stars_growth": 50
-      },
-      {
-        "full_name": "invoke-ai/InvokeAI",
-        "stars": 28314,
-        "stars_growth": 41
-      },
-      {
-        "full_name": "openvinotoolkit/openvino",
-        "stars": 10937,
-        "stars_growth": 34
-      },
-      {
-        "full_name": "Acly/krita-ai-diffusion",
-        "stars": 10654,
-        "stars_growth": 26
-      },
-      {
-        "full_name": "MochiDiffusion/MochiDiffusion",
-        "stars": 7962,
-        "stars_growth": 5
-      },
-      {
-        "full_name": "leejet/stable-diffusion.cpp",
-        "stars": 7473,
-        "stars_growth": 185
-      },
-      {
-        "full_name": "vladmandic/sdnext",
-        "stars": 7350,
-        "stars_growth": 7
-      },
-      {
-        "full_name": "langflow-ai/langflow",
-        "stars": 155382,
-        "stars_growth": 225
-      },
-      {
-        "full_name": "langchain-ai/langchain",
-        "stars": 147293,
-        "stars_growth": 390
-      },
-      {
-        "full_name": "microsoft/generative-ai-for-beginners",
-        "stars": 120809,
-        "stars_growth": 481
-      },
-      {
-        "full_name": "asgeirtj/system_prompts_leaks",
-        "stars": 68628,
-        "stars_growth": 526
-      },
-      {
-        "full_name": "rohitg00/ai-engineering-from-scratch",
-        "stars": 61678,
-        "stars_growth": 5872
-      },
-      {
-        "full_name": "langchain-ai/langgraph",
-        "stars": 42493,
-        "stars_growth": 335
-      },
-      {
-        "full_name": "lyogavin/airllm",
-        "stars": 35223,
-        "stars_growth": 516
-      },
-      {
-        "full_name": "Tencent/WeKnora",
-        "stars": 31327,
-        "stars_growth": 2259
-      },
-      {
-        "full_name": "ahujasid/mcp-for-blender",
-        "stars": 29687,
-        "stars_growth": 181
-      },
-      {
-        "full_name": "Anil-matcha/Open-Generative-AI",
-        "stars": 29435,
-        "stars_growth": 72
-      },
-      {
-        "full_name": "Comfy-Org/ComfyUI",
-        "stars": 135542,
-        "stars_growth": 985
-      },
-      {
-        "full_name": "Osmantic/ODS",
-        "stars": 6905,
-        "stars_growth": 161
-      },
-      {
-        "full_name": "wiltodelta/remove-ai-watermarks",
-        "stars": 5719,
-        "stars_growth": 72
-      },
-      {
-        "full_name": "mcmonkeyprojects/SwarmUI",
-        "stars": 4618,
-        "stars_growth": 27
-      },
-      {
-        "full_name": "Lightricks/ComfyUI-LTXVideo",
-        "stars": 4148,
-        "stars_growth": 10
-      },
-      {
-        "full_name": "rgthree/rgthree-comfy",
-        "stars": 3523,
-        "stars_growth": 27
-      },
-      {
-        "full_name": "Tavris1/ComfyUI-Easy-Install",
-        "stars": 1938,
-        "stars_growth": 11
-      },
-      {
-        "full_name": "WASasquatch/was-node-suite-comfyui",
-        "stars": 1856,
-        "stars_growth": 6
-      },
-      {
-        "full_name": "jau123/MeiGen-AI-Design-MCP",
-        "stars": 1773,
-        "stars_growth": 0
-      },
-      {
-        "full_name": "YanWenKun/ComfyUI-Docker",
-        "stars": 1662,
-        "stars_growth": 5
-      },
-      {
-        "full_name": "tensorflow/tensorflow",
-        "stars": 200627,
-        "stars_growth": 367
-      },
-      {
-        "full_name": "huggingface/transformers",
-        "stars": 166835,
-        "stars_growth": 290
-      },
-      {
-        "full_name": "pytorch/pytorch",
-        "stars": 103536,
-        "stars_growth": 353
-      },
-      {
-        "full_name": "Developer-Y/cs-video-courses",
-        "stars": 83580,
-        "stars_growth": 26
-      },
-      {
-        "full_name": "netdata/netdata",
-        "stars": 80746,
-        "stars_growth": 119
-      },
-      {
-        "full_name": "tesseract-ocr/tesseract",
-        "stars": 76765,
-        "stars_growth": 53
-      },
-      {
-        "full_name": "OpenBB-finance/OpenBB",
-        "stars": 73665,
-        "stars_growth": 273
-      },
-      {
-        "full_name": "scikit-learn/scikit-learn",
-        "stars": 67431,
-        "stars_growth": 84
-      },
-      {
-        "full_name": "keras-team/keras",
-        "stars": 64346,
-        "stars_growth": 16
-      },
-      {
-        "full_name": "ultralytics/ultralytics",
-        "stars": 62119,
-        "stars_growth": 203
-      },
-      {
-        "full_name": "tensorflow/tensorflow",
-        "stars": 200627,
-        "stars_growth": 367
-      },
-      {
-        "full_name": "huggingface/transformers",
-        "stars": 166835,
-        "stars_growth": 290
-      },
-      {
-        "full_name": "pytorch/pytorch",
-        "stars": 103536,
-        "stars_growth": 353
-      },
-      {
-        "full_name": "opencv/opencv",
-        "stars": 91015,
-        "stars_growth": 77
-      },
-      {
-        "full_name": "Developer-Y/cs-video-courses",
-        "stars": 83580,
-        "stars_growth": 26
-      },
-      {
-        "full_name": "keras-team/keras",
-        "stars": 64346,
-        "stars_growth": 16
-      },
-      {
-        "full_name": "ultralytics/ultralytics",
-        "stars": 62119,
-        "stars_growth": 203
-      },
-      {
-        "full_name": "rohitg00/ai-engineering-from-scratch",
-        "stars": 61678,
-        "stars_growth": 5872
-      },
-      {
-        "full_name": "roboflow/supervision",
-        "stars": 51089,
-        "stars_growth": 91
-      },
-      {
-        "full_name": "streamlit/streamlit",
-        "stars": 45858,
-        "stars_growth": 11
-      },
-      {
-        "full_name": "huggingface/transformers",
-        "stars": 166835,
-        "stars_growth": 290
-      },
-      {
-        "full_name": "Comfy-Org/ComfyUI",
-        "stars": 135542,
-        "stars_growth": 985
-      },
-      {
-        "full_name": "vllm-project/vllm",
-        "stars": 92975,
-        "stars_growth": 508
-      },
-      {
-        "full_name": "keras-team/keras",
-        "stars": 64346,
-        "stars_growth": 16
-      },
-      {
-        "full_name": "ultralytics/ultralytics",
-        "stars": 62119,
-        "stars_growth": 203
-      },
-      {
-        "full_name": "roboflow/supervision",
-        "stars": 51089,
-        "stars_growth": 91
-      },
-      {
-        "full_name": "ray-project/ray",
-        "stars": 43955,
-        "stars_growth": 53
-      },
-      {
-        "full_name": "deepspeedai/DeepSpeed",
-        "stars": 43167,
-        "stars_growth": 11
-      },
-      {
-        "full_name": "OpenBMB/VoxCPM",
-        "stars": 38178,
-        "stars_growth": 0
-      },
-      {
-        "full_name": "huggingface/pytorch-image-models",
-        "stars": 37181,
-        "stars_growth": 10
-      },
-      {
-        "full_name": "Mintplex-Labs/anything-llm",
-        "stars": 66613,
-        "stars_growth": 267
-      },
-      {
-        "full_name": "meilisearch/meilisearch",
-        "stars": 59443,
-        "stars_growth": 67
-      },
-      {
-        "full_name": "run-llama/llama_index",
-        "stars": 52367,
-        "stars_growth": 79
-      },
-      {
-        "full_name": "milvus-io/milvus",
-        "stars": 46284,
-        "stars_growth": 61
-      },
-      {
-        "full_name": "VectifyAI/PageIndex",
-        "stars": 37595,
-        "stars_growth": 1786
-      },
-      {
-        "full_name": "qdrant/qdrant",
-        "stars": 34882,
-        "stars_growth": 124
-      },
-      {
-        "full_name": "topoteretes/cognee",
-        "stars": 31231,
-        "stars_growth": 300
-      },
-      {
-        "full_name": "weaviate/weaviate",
-        "stars": 16860,
-        "stars_growth": 21
-      },
-      {
-        "full_name": "alibaba/zvec",
-        "stars": 16030,
-        "stars_growth": 38
-      },
-      {
-        "full_name": "langchain4j/langchain4j",
-        "stars": 13178,
-        "stars_growth": 10
-      },
-      {
-        "full_name": "openclaw/openclaw",
-        "stars": 390817,
-        "stars_growth": 538
-      },
-      {
-        "full_name": "obra/superpowers",
-        "stars": 293102,
-        "stars_growth": 2815
-      },
-      {
-        "full_name": "mattpocock/skills",
-        "stars": 272279,
-        "stars_growth": 4299
-      },
-      {
-        "full_name": "affaan-m/ECC",
-        "stars": 269757,
-        "stars_growth": 4171
-      },
-      {
-        "full_name": "NousResearch/hermes-agent",
-        "stars": 250133,
-        "stars_growth": 1972
-      },
-      {
-        "full_name": "deepseek-ai/deepseek-harness",
-        "stars": 240458,
-        "stars_growth": 6753
-      },
-      {
-        "full_name": "anomalyco/opencode",
-        "stars": 210984,
-        "stars_growth": 1498
-      },
-      {
-        "full_name": "n8n-io/n8n",
-        "stars": 206318,
-        "stars_growth": 582
-      },
-      {
-        "full_name": "Significant-Gravitas/AutoGPT",
-        "stars": 187621,
-        "stars_growth": 118
-      },
-      {
-        "full_name": "firecrawl/firecrawl",
-        "stars": 186769,
-        "stars_growth": 3266
-      },
-      {
-        "full_name": "anthropics/skills",
-        "stars": 179052,
-        "stars_growth": 1368
-      },
-      {
-        "full_name": "langgenius/dify",
-        "stars": 157547,
-        "stars_growth": 633
-      },
-      {
-        "full_name": "msitarzewski/agency-agents",
-        "stars": 155384,
-        "stars_growth": 1153
-      },
-      {
-        "full_name": "langflow-ai/langflow",
-        "stars": 155382,
-        "stars_growth": 225
-      },
-      {
-        "full_name": "open-webui/open-webui",
-        "stars": 153593,
-        "stars_growth": 730
-      },
-      {
-        "full_name": "firecrawl/firecrawl",
-        "stars": 186769,
-        "stars_growth": 3266
-      },
-      {
-        "full_name": "langgenius/dify",
-        "stars": 157547,
-        "stars_growth": 633
-      },
-      {
-        "full_name": "msitarzewski/agency-agents",
-        "stars": 155384,
-        "stars_growth": 1153
-      },
-      {
-        "full_name": "langflow-ai/langflow",
-        "stars": 155382,
-        "stars_growth": 225
-      },
-      {
-        "full_name": "langchain-ai/langchain",
-        "stars": 147293,
-        "stars_growth": 390
-      },
-      {
-        "full_name": "Shubhamsaboo/awesome-llm-apps",
-        "stars": 140279,
-        "stars_growth": 806
-      },
-      {
-        "full_name": "earendil-works/pi",
-        "stars": 110500,
-        "stars_growth": 1869
-      },
-      {
-        "full_name": "google-gemini/gemini-cli",
-        "stars": 107196,
-        "stars_growth": 64
-      },
-      {
-        "full_name": "addyosmani/agent-skills",
-        "stars": 99988,
-        "stars_growth": 1478
-      },
-      {
-        "full_name": "thedotmack/claude-mem",
-        "stars": 94971,
-        "stars_growth": 472
-      },
-      {
-        "full_name": "unclecode/crawl4ai",
-        "stars": 84507,
-        "stars_growth": 405
-      },
-      {
-        "full_name": "lobehub/lobehub",
-        "stars": 82912,
-        "stars_growth": 142
-      },
-      {
-        "full_name": "headroomlabs-ai/headroom",
-        "stars": 74128,
-        "stars_growth": 575
-      },
-      {
-        "full_name": "OpenBB-finance/OpenBB",
-        "stars": 73665,
-        "stars_growth": 273
-      },
-      {
-        "full_name": "ruvnet/ruflo",
-        "stars": 73540,
-        "stars_growth": 446
-      },
-      {
-        "full_name": "Shubhamsaboo/awesome-llm-apps",
-        "stars": 140279,
-        "stars_growth": 806
-      },
-      {
-        "full_name": "ggml-org/llama.cpp",
-        "stars": 129917,
-        "stars_growth": 668
-      },
-      {
-        "full_name": "earendil-works/pi",
-        "stars": 110500,
-        "stars_growth": 1869
-      },
-      {
-        "full_name": "TauricResearch/TradingAgents",
-        "stars": 109296,
-        "stars_growth": 1103
-      },
-      {
-        "full_name": "vllm-project/vllm",
-        "stars": 92975,
-        "stars_growth": 508
-      },
-      {
-        "full_name": "infiniflow/ragflow",
-        "stars": 91521,
-        "stars_growth": 332
-      },
-      {
-        "full_name": "unclecode/crawl4ai",
-        "stars": 84507,
-        "stars_growth": 405
-      },
-      {
-        "full_name": "rtk-ai/rtk",
-        "stars": 82047,
-        "stars_growth": 577
-      },
-      {
-        "full_name": "opendatalab/MinerU",
-        "stars": 80862,
-        "stars_growth": 353
-      },
-      {
-        "full_name": "unslothai/unsloth",
-        "stars": 77059,
-        "stars_growth": 455
-      },
-      {
-        "full_name": "hiyouga/LlamaFactory",
-        "stars": 75213,
-        "stars_growth": 89
-      },
-      {
-        "full_name": "headroomlabs-ai/headroom",
-        "stars": 74128,
-        "stars_growth": 575
-      },
-      {
-        "full_name": "Mintplex-Labs/anything-llm",
-        "stars": 66613,
-        "stars_growth": 267
-      },
-      {
-        "full_name": "ZhuLinsen/daily_stock_analysis",
-        "stars": 65801,
-        "stars_growth": 285
-      },
-      {
-        "full_name": "upstash/context7",
-        "stars": 62542,
-        "stars_growth": 198
-      },
-      {
-        "full_name": "paperclipai/paperclip",
-        "stars": 94726,
-        "stars_growth": 12941
-      },
-      {
-        "full_name": "anthropics/financial-services",
-        "stars": 38277,
-        "stars_growth": 2114
-      },
-      {
-        "full_name": "vectorize-io/hindsight",
-        "stars": 43159,
-        "stars_growth": 17863
-      },
-      {
-        "full_name": "debpalash/VoiceStudio",
-        "stars": 48816,
-        "stars_growth": 12722
-      },
-      {
-        "full_name": "vercel/next.js",
-        "stars": 142908,
-        "stars_growth": 582
-      },
-      {
-        "full_name": "HKUDS/CLI-Anything",
-        "stars": 51043,
-        "stars_growth": 1327
-      },
-      {
-        "full_name": "davila7/claude-code-templates",
-        "stars": 32192,
-        "stars_growth": 1218
-      },
-      {
-        "full_name": "stablyai/orca",
-        "stars": 81821,
-        "stars_growth": 6242
-      },
-      {
-        "full_name": "cloudflare/security-audit-skill",
-        "stars": 23255,
-        "stars_growth": 3311
-      },
-      {
-        "full_name": "pbakaus/impeccable",
-        "stars": 72674,
-        "stars_growth": 2644
-      },
-      {
-        "full_name": "TencentCloud/Octop",
-        "stars": 5913,
-        "stars_growth": 1241
-      },
-      {
-        "full_name": "trycua/cua",
-        "stars": 27413,
-        "stars_growth": 1211
-      },
-      {
-        "full_name": "PrismML-Eng/Bonsai-demo",
-        "stars": 3230,
-        "stars_growth": 210
-      },
-      {
-        "full_name": "elastic/elasticsearch",
-        "stars": 78139,
-        "stars_growth": 169
-      },
-      {
-        "full_name": "FxEmbed/FxEmbed",
-        "stars": 5592,
-        "stars_growth": 502
-      },
-      {
-        "full_name": "NVIDIA/OpenShell",
-        "stars": 10868,
-        "stars_growth": 990
-      },
-      {
-        "full_name": "t8y2/dbx",
-        "stars": 22406,
-        "stars_growth": 232
-      },
-      {
-        "full_name": "mvschwarz/openrig",
-        "stars": 2561,
-        "stars_growth": 2098
-      },
-      {
-        "full_name": "oblien/openship",
-        "stars": 13985,
-        "stars_growth": 437
-      },
-      {
-        "full_name": "averygan/reclip",
-        "stars": 10311,
-        "stars_growth": 113
-      },
-      {
-        "full_name": "cs341-illinois/coursebook",
-        "stars": 3200,
-        "stars_growth": 572
-      },
-      {
-        "full_name": "willfaust/Madeira",
-        "stars": 1141,
-        "stars_growth": 265
-      },
-      {
-        "full_name": "dream-num/univer",
-        "stars": 21979,
-        "stars_growth": 6259
-      },
-      {
-        "full_name": "rakyll/hey",
-        "stars": 20539,
-        "stars_growth": 34
-      },
-      {
-        "full_name": "superdesigndev/treg",
-        "stars": 3868,
-        "stars_growth": 1753
-      },
-      {
-        "full_name": "mvt-project/mvt",
-        "stars": 15025,
-        "stars_growth": 1159
-      },
-      {
-        "full_name": "strands-agents/harness-sdk",
-        "stars": 8573,
-        "stars_growth": 1034
-      },
-      {
-        "full_name": "TNT-Likely/PanWatch",
-        "stars": 1887,
-        "stars_growth": 592
-      },
-      {
-        "full_name": "FareedKhan-dev/train-llm-from-scratch",
-        "stars": 11817,
-        "stars_growth": 973
-      },
-      {
-        "full_name": "harvard-edge/cs249r_book",
-        "stars": 28726,
-        "stars_growth": 45
-      },
-      {
-        "full_name": "SemiAnalysisAI/InferenceX",
-        "stars": 1788,
-        "stars_growth": 11
-      },
-      {
-        "full_name": "MadsLorentzen/ai-job-search",
-        "stars": 44514,
-        "stars_growth": 119
-      },
-      {
-        "full_name": "mem0ai/mem0",
-        "stars": 66338,
-        "stars_growth": 484
-      },
-      {
-        "full_name": "microsoft/SkillOpt",
-        "stars": 17887,
-        "stars_growth": 85
-      },
-      {
-        "full_name": "Q00/ouroboros",
-        "stars": 6147,
-        "stars_growth": 12
-      },
-      {
-        "full_name": "moeru-ai/airi",
-        "stars": 49844,
-        "stars_growth": 124
-      },
-      {
-        "full_name": "heygen-com/hyperframes",
-        "stars": 54318,
-        "stars_growth": 608
-      },
-      {
-        "full_name": "vercel-labs/scriptc",
-        "stars": 5763,
-        "stars_growth": 594
-      },
-      {
-        "full_name": "mobile-next/mobile-mcp",
-        "stars": 8430,
-        "stars_growth": 954
-      },
-      {
-        "full_name": "cloudflare/vinext",
-        "stars": 9006,
-        "stars_growth": 100
-      },
-      {
-        "full_name": "cypress-io/cypress",
-        "stars": 51043,
-        "stars_growth": 17
-      },
-      {
-        "full_name": "VoltAgent/voltagent",
-        "stars": 10706,
-        "stars_growth": 10
-      },
-      {
-        "full_name": "OpenCTI-Platform/opencti",
-        "stars": 10069,
-        "stars_growth": 5
-      }
-    ],
-    "count": 208
-  },
   "2026-10-01": {
     "repos": [
       {
@@ -9523,5 +8478,1065 @@
       }
     ],
     "count": 207
+  },
+  "2026-10-09": {
+    "repos": [
+      {
+        "full_name": "affaan-m/ECC",
+        "stars": 275535,
+        "stars_growth": 4718
+      },
+      {
+        "full_name": "NousResearch/hermes-agent",
+        "stars": 252108,
+        "stars_growth": 1452
+      },
+      {
+        "full_name": "firecrawl/firecrawl",
+        "stars": 189698,
+        "stars_growth": 2029
+      },
+      {
+        "full_name": "Significant-Gravitas/AutoGPT",
+        "stars": 187489,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "ollama/ollama",
+        "stars": 182440,
+        "stars_growth": 406
+      },
+      {
+        "full_name": "f/prompts.chat",
+        "stars": 172208,
+        "stars_growth": 366
+      },
+      {
+        "full_name": "huggingface/transformers",
+        "stars": 166868,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "DietrichGebert/ponytail",
+        "stars": 158853,
+        "stars_growth": 8024
+      },
+      {
+        "full_name": "langgenius/dify",
+        "stars": 157966,
+        "stars_growth": 255
+      },
+      {
+        "full_name": "open-webui/open-webui",
+        "stars": 154081,
+        "stars_growth": 310
+      },
+      {
+        "full_name": "NousResearch/hermes-agent",
+        "stars": 252108,
+        "stars_growth": 1452
+      },
+      {
+        "full_name": "Panniantong/Agent-Reach",
+        "stars": 94363,
+        "stars_growth": 5421
+      },
+      {
+        "full_name": "thedaviddias/Front-End-Checklist",
+        "stars": 74412,
+        "stars_growth": 81
+      },
+      {
+        "full_name": "career-ops-hq/career-ops",
+        "stars": 73857,
+        "stars_growth": 593
+      },
+      {
+        "full_name": "ZhuLinsen/daily_stock_analysis",
+        "stars": 66060,
+        "stars_growth": 217
+      },
+      {
+        "full_name": "hugohe3/ppt-master",
+        "stars": 58421,
+        "stars_growth": 1114
+      },
+      {
+        "full_name": "bojieli/ai-agent-book",
+        "stars": 53070,
+        "stars_growth": 1020
+      },
+      {
+        "full_name": "CherryHQ/cherry-studio",
+        "stars": 52475,
+        "stars_growth": 161
+      },
+      {
+        "full_name": "HKUDS/nanobot",
+        "stars": 48888,
+        "stars_growth": 148
+      },
+      {
+        "full_name": "zhayujie/CowAgent",
+        "stars": 47294,
+        "stars_growth": 84
+      },
+      {
+        "full_name": "open-webui/open-webui",
+        "stars": 154081,
+        "stars_growth": 310
+      },
+      {
+        "full_name": "langchain-ai/langchain",
+        "stars": 147417,
+        "stars_growth": 42
+      },
+      {
+        "full_name": "Graphify-Labs/graphify",
+        "stars": 124820,
+        "stars_growth": 1674
+      },
+      {
+        "full_name": "thedotmack/claude-mem",
+        "stars": 98712,
+        "stars_growth": 3556
+      },
+      {
+        "full_name": "infiniflow/ragflow",
+        "stars": 91883,
+        "stars_growth": 291
+      },
+      {
+        "full_name": "unclecode/crawl4ai",
+        "stars": 85048,
+        "stars_growth": 285
+      },
+      {
+        "full_name": "datawhalechina/hello-agents",
+        "stars": 82124,
+        "stars_growth": 620
+      },
+      {
+        "full_name": "headroomlabs-ai/headroom",
+        "stars": 74782,
+        "stars_growth": 522
+      },
+      {
+        "full_name": "mem0ai/mem0",
+        "stars": 66867,
+        "stars_growth": 412
+      },
+      {
+        "full_name": "Mintplex-Labs/anything-llm",
+        "stars": 66847,
+        "stars_growth": 180
+      },
+      {
+        "full_name": "microsoft/markitdown",
+        "stars": 189122,
+        "stars_growth": 1197
+      },
+      {
+        "full_name": "langchain-ai/langchain",
+        "stars": 147417,
+        "stars_growth": 42
+      },
+      {
+        "full_name": "bytedance/deer-flow",
+        "stars": 83559,
+        "stars_growth": 232
+      },
+      {
+        "full_name": "headroomlabs-ai/headroom",
+        "stars": 74782,
+        "stars_growth": 522
+      },
+      {
+        "full_name": "BerriAI/litellm",
+        "stars": 60414,
+        "stars_growth": 385
+      },
+      {
+        "full_name": "langchain-ai/langgraph",
+        "stars": 42929,
+        "stars_growth": 335
+      },
+      {
+        "full_name": "langfuse/langfuse",
+        "stars": 35555,
+        "stars_growth": 263
+      },
+      {
+        "full_name": "huggingface/agents-course",
+        "stars": 33330,
+        "stars_growth": 71
+      },
+      {
+        "full_name": "langchain-ai/deepagents",
+        "stars": 30048,
+        "stars_growth": 148
+      },
+      {
+        "full_name": "mlflow/mlflow",
+        "stars": 28318,
+        "stars_growth": 96
+      },
+      {
+        "full_name": "NousResearch/hermes-agent",
+        "stars": 252108,
+        "stars_growth": 1452
+      },
+      {
+        "full_name": "f/prompts.chat",
+        "stars": 172208,
+        "stars_growth": 366
+      },
+      {
+        "full_name": "langflow-ai/langflow",
+        "stars": 155410,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "langchain-ai/langchain",
+        "stars": 147417,
+        "stars_growth": 42
+      },
+      {
+        "full_name": "microsoft/generative-ai-for-beginners",
+        "stars": 121025,
+        "stars_growth": 102
+      },
+      {
+        "full_name": "OpenHands/OpenHands",
+        "stars": 90332,
+        "stars_growth": 565
+      },
+      {
+        "full_name": "lobehub/lobehub",
+        "stars": 83073,
+        "stars_growth": 120
+      },
+      {
+        "full_name": "unslothai/unsloth",
+        "stars": 77561,
+        "stars_growth": 436
+      },
+      {
+        "full_name": "openai/openai-cookbook",
+        "stars": 76482,
+        "stars_growth": 177
+      },
+      {
+        "full_name": "code-yeongyu/oh-my-openagent",
+        "stars": 69916,
+        "stars_growth": 167
+      },
+      {
+        "full_name": "Comfy-Org/ComfyUI",
+        "stars": 136529,
+        "stars_growth": 726
+      },
+      {
+        "full_name": "unslothai/unsloth",
+        "stars": 77561,
+        "stars_growth": 436
+      },
+      {
+        "full_name": "calesthio/OpenMontage",
+        "stars": 65606,
+        "stars_growth": 2856
+      },
+      {
+        "full_name": "mudler/LocalAI",
+        "stars": 49444,
+        "stars_growth": 77
+      },
+      {
+        "full_name": "huggingface/diffusers",
+        "stars": 34696,
+        "stars_growth": 56
+      },
+      {
+        "full_name": "invoke-ai/InvokeAI",
+        "stars": 28485,
+        "stars_growth": 158
+      },
+      {
+        "full_name": "openvinotoolkit/openvino",
+        "stars": 10972,
+        "stars_growth": 30
+      },
+      {
+        "full_name": "Acly/krita-ai-diffusion",
+        "stars": 10678,
+        "stars_growth": 16
+      },
+      {
+        "full_name": "LykosAI/StabilityMatrix",
+        "stars": 8891,
+        "stars_growth": 30
+      },
+      {
+        "full_name": "MochiDiffusion/MochiDiffusion",
+        "stars": 7965,
+        "stars_growth": 2
+      },
+      {
+        "full_name": "langflow-ai/langflow",
+        "stars": 155410,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "langchain-ai/langchain",
+        "stars": 147417,
+        "stars_growth": 42
+      },
+      {
+        "full_name": "shadcn-ui/ui",
+        "stars": 125176,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "microsoft/generative-ai-for-beginners",
+        "stars": 121025,
+        "stars_growth": 102
+      },
+      {
+        "full_name": "asgeirtj/system_prompts_leaks",
+        "stars": 69210,
+        "stars_growth": 471
+      },
+      {
+        "full_name": "rohitg00/ai-engineering-from-scratch",
+        "stars": 65974,
+        "stars_growth": 3473
+      },
+      {
+        "full_name": "langchain-ai/langgraph",
+        "stars": 42929,
+        "stars_growth": 335
+      },
+      {
+        "full_name": "lyogavin/airllm",
+        "stars": 35524,
+        "stars_growth": 239
+      },
+      {
+        "full_name": "Tencent/WeKnora",
+        "stars": 32728,
+        "stars_growth": 1038
+      },
+      {
+        "full_name": "ahujasid/mcp-for-blender",
+        "stars": 30278,
+        "stars_growth": 439
+      },
+      {
+        "full_name": "Comfy-Org/ComfyUI",
+        "stars": 136529,
+        "stars_growth": 726
+      },
+      {
+        "full_name": "LykosAI/StabilityMatrix",
+        "stars": 8891,
+        "stars_growth": 30
+      },
+      {
+        "full_name": "Osmantic/ODS",
+        "stars": 7169,
+        "stars_growth": 210
+      },
+      {
+        "full_name": "wiltodelta/remove-ai-watermarks",
+        "stars": 5908,
+        "stars_growth": 168
+      },
+      {
+        "full_name": "rgthree/rgthree-comfy",
+        "stars": 3553,
+        "stars_growth": 17
+      },
+      {
+        "full_name": "Tavris1/ComfyUI-Easy-Install",
+        "stars": 1962,
+        "stars_growth": 14
+      },
+      {
+        "full_name": "WASasquatch/was-node-suite-comfyui",
+        "stars": 1867,
+        "stars_growth": 10
+      },
+      {
+        "full_name": "YanWenKun/ComfyUI-Docker",
+        "stars": 1672,
+        "stars_growth": 8
+      },
+      {
+        "full_name": "zanllp/infinite-image-browsing",
+        "stars": 1356,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "Acly/comfyui-inpaint-nodes",
+        "stars": 1247,
+        "stars_growth": 1
+      },
+      {
+        "full_name": "tensorflow/tensorflow",
+        "stars": 200561,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "f/prompts.chat",
+        "stars": 172208,
+        "stars_growth": 366
+      },
+      {
+        "full_name": "huggingface/transformers",
+        "stars": 166868,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "pytorch/pytorch",
+        "stars": 103924,
+        "stars_growth": 314
+      },
+      {
+        "full_name": "Developer-Y/cs-video-courses",
+        "stars": 83642,
+        "stars_growth": 43
+      },
+      {
+        "full_name": "netdata/netdata",
+        "stars": 80853,
+        "stars_growth": 76
+      },
+      {
+        "full_name": "tesseract-ocr/tesseract",
+        "stars": 76880,
+        "stars_growth": 90
+      },
+      {
+        "full_name": "scikit-learn/scikit-learn",
+        "stars": 67500,
+        "stars_growth": 54
+      },
+      {
+        "full_name": "rohitg00/ai-engineering-from-scratch",
+        "stars": 65974,
+        "stars_growth": 3473
+      },
+      {
+        "full_name": "keras-team/keras",
+        "stars": 64355,
+        "stars_growth": 11
+      },
+      {
+        "full_name": "tensorflow/tensorflow",
+        "stars": 200561,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "huggingface/transformers",
+        "stars": 166868,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "pytorch/pytorch",
+        "stars": 103924,
+        "stars_growth": 314
+      },
+      {
+        "full_name": "opencv/opencv",
+        "stars": 91126,
+        "stars_growth": 97
+      },
+      {
+        "full_name": "Developer-Y/cs-video-courses",
+        "stars": 83642,
+        "stars_growth": 43
+      },
+      {
+        "full_name": "rohitg00/ai-engineering-from-scratch",
+        "stars": 65974,
+        "stars_growth": 3473
+      },
+      {
+        "full_name": "keras-team/keras",
+        "stars": 64355,
+        "stars_growth": 11
+      },
+      {
+        "full_name": "ultralytics/ultralytics",
+        "stars": 62318,
+        "stars_growth": 162
+      },
+      {
+        "full_name": "ultralytics/yolov5",
+        "stars": 58119,
+        "stars_growth": 15
+      },
+      {
+        "full_name": "roboflow/supervision",
+        "stars": 51164,
+        "stars_growth": 57
+      },
+      {
+        "full_name": "huggingface/transformers",
+        "stars": 166868,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "Comfy-Org/ComfyUI",
+        "stars": 136529,
+        "stars_growth": 726
+      },
+      {
+        "full_name": "vllm-project/vllm",
+        "stars": 93426,
+        "stars_growth": 375
+      },
+      {
+        "full_name": "keras-team/keras",
+        "stars": 64355,
+        "stars_growth": 11
+      },
+      {
+        "full_name": "ultralytics/ultralytics",
+        "stars": 62318,
+        "stars_growth": 162
+      },
+      {
+        "full_name": "ultralytics/yolov5",
+        "stars": 58119,
+        "stars_growth": 15
+      },
+      {
+        "full_name": "roboflow/supervision",
+        "stars": 51164,
+        "stars_growth": 57
+      },
+      {
+        "full_name": "ray-project/ray",
+        "stars": 43996,
+        "stars_growth": 33
+      },
+      {
+        "full_name": "deepspeedai/DeepSpeed",
+        "stars": 43211,
+        "stars_growth": 39
+      },
+      {
+        "full_name": "OpenBMB/VoxCPM",
+        "stars": 38427,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "Mintplex-Labs/anything-llm",
+        "stars": 66847,
+        "stars_growth": 180
+      },
+      {
+        "full_name": "meilisearch/meilisearch",
+        "stars": 59527,
+        "stars_growth": 67
+      },
+      {
+        "full_name": "run-llama/llama_index",
+        "stars": 52448,
+        "stars_growth": 68
+      },
+      {
+        "full_name": "milvus-io/milvus",
+        "stars": 46341,
+        "stars_growth": 42
+      },
+      {
+        "full_name": "VectifyAI/PageIndex",
+        "stars": 39011,
+        "stars_growth": 549
+      },
+      {
+        "full_name": "qdrant/qdrant",
+        "stars": 34984,
+        "stars_growth": 85
+      },
+      {
+        "full_name": "topoteretes/cognee",
+        "stars": 31806,
+        "stars_growth": 508
+      },
+      {
+        "full_name": "weaviate/weaviate",
+        "stars": 16875,
+        "stars_growth": 17
+      },
+      {
+        "full_name": "alibaba/zvec",
+        "stars": 16084,
+        "stars_growth": 32
+      },
+      {
+        "full_name": "langchain4j/langchain4j",
+        "stars": 13219,
+        "stars_growth": 27
+      },
+      {
+        "full_name": "bentoml/OpenLLM",
+        "stars": 12553,
+        "stars_growth": 1
+      },
+      {
+        "full_name": "openclaw/openclaw",
+        "stars": 391504,
+        "stars_growth": 323
+      },
+      {
+        "full_name": "obra/superpowers",
+        "stars": 296664,
+        "stars_growth": 2580
+      },
+      {
+        "full_name": "mattpocock/skills",
+        "stars": 281541,
+        "stars_growth": 7434
+      },
+      {
+        "full_name": "affaan-m/ECC",
+        "stars": 275535,
+        "stars_growth": 4718
+      },
+      {
+        "full_name": "NousResearch/hermes-agent",
+        "stars": 252108,
+        "stars_growth": 1452
+      },
+      {
+        "full_name": "deepseek-ai/deepseek-harness",
+        "stars": 245935,
+        "stars_growth": 4037
+      },
+      {
+        "full_name": "anomalyco/opencode",
+        "stars": 212257,
+        "stars_growth": 879
+      },
+      {
+        "full_name": "n8n-io/n8n",
+        "stars": 206763,
+        "stars_growth": 284
+      },
+      {
+        "full_name": "firecrawl/firecrawl",
+        "stars": 189698,
+        "stars_growth": 2029
+      },
+      {
+        "full_name": "Significant-Gravitas/AutoGPT",
+        "stars": 187489,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "anthropics/skills",
+        "stars": 180043,
+        "stars_growth": 690
+      },
+      {
+        "full_name": "f/prompts.chat",
+        "stars": 172209,
+        "stars_growth": 367
+      },
+      {
+        "full_name": "Snailclimb/JavaGuide",
+        "stars": 158894,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "DietrichGebert/ponytail",
+        "stars": 158857,
+        "stars_growth": 8028
+      },
+      {
+        "full_name": "msitarzewski/agency-agents",
+        "stars": 158387,
+        "stars_growth": 2715
+      },
+      {
+        "full_name": "firecrawl/firecrawl",
+        "stars": 189698,
+        "stars_growth": 2029
+      },
+      {
+        "full_name": "DietrichGebert/ponytail",
+        "stars": 158858,
+        "stars_growth": 8029
+      },
+      {
+        "full_name": "msitarzewski/agency-agents",
+        "stars": 158387,
+        "stars_growth": 2715
+      },
+      {
+        "full_name": "langgenius/dify",
+        "stars": 157966,
+        "stars_growth": 255
+      },
+      {
+        "full_name": "langflow-ai/langflow",
+        "stars": 155410,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "langchain-ai/langchain",
+        "stars": 147417,
+        "stars_growth": 42
+      },
+      {
+        "full_name": "earendil-works/pi",
+        "stars": 113638,
+        "stars_growth": 2248
+      },
+      {
+        "full_name": "google-gemini/gemini-cli",
+        "stars": 107265,
+        "stars_growth": 43
+      },
+      {
+        "full_name": "addyosmani/agent-skills",
+        "stars": 103488,
+        "stars_growth": 3097
+      },
+      {
+        "full_name": "thedotmack/claude-mem",
+        "stars": 98713,
+        "stars_growth": 3557
+      },
+      {
+        "full_name": "Panniantong/Agent-Reach",
+        "stars": 94366,
+        "stars_growth": 5424
+      },
+      {
+        "full_name": "unclecode/crawl4ai",
+        "stars": 85048,
+        "stars_growth": 285
+      },
+      {
+        "full_name": "lobehub/lobehub",
+        "stars": 83073,
+        "stars_growth": 120
+      },
+      {
+        "full_name": "headroomlabs-ai/headroom",
+        "stars": 74782,
+        "stars_growth": 522
+      },
+      {
+        "full_name": "thedaviddias/Front-End-Checklist",
+        "stars": 74412,
+        "stars_growth": 81
+      },
+      {
+        "full_name": "ggml-org/llama.cpp",
+        "stars": 130578,
+        "stars_growth": 471
+      },
+      {
+        "full_name": "earendil-works/pi",
+        "stars": 113638,
+        "stars_growth": 2248
+      },
+      {
+        "full_name": "TauricResearch/TradingAgents",
+        "stars": 110320,
+        "stars_growth": 828
+      },
+      {
+        "full_name": "vllm-project/vllm",
+        "stars": 93426,
+        "stars_growth": 375
+      },
+      {
+        "full_name": "infiniflow/ragflow",
+        "stars": 91883,
+        "stars_growth": 291
+      },
+      {
+        "full_name": "unclecode/crawl4ai",
+        "stars": 85048,
+        "stars_growth": 285
+      },
+      {
+        "full_name": "rtk-ai/rtk",
+        "stars": 82726,
+        "stars_growth": 535
+      },
+      {
+        "full_name": "opendatalab/MinerU",
+        "stars": 81320,
+        "stars_growth": 349
+      },
+      {
+        "full_name": "unslothai/unsloth",
+        "stars": 77561,
+        "stars_growth": 436
+      },
+      {
+        "full_name": "headroomlabs-ai/headroom",
+        "stars": 74782,
+        "stars_growth": 522
+      },
+      {
+        "full_name": "Mintplex-Labs/anything-llm",
+        "stars": 66847,
+        "stars_growth": 180
+      },
+      {
+        "full_name": "ZhuLinsen/daily_stock_analysis",
+        "stars": 66060,
+        "stars_growth": 217
+      },
+      {
+        "full_name": "upstash/context7",
+        "stars": 62822,
+        "stars_growth": 228
+      },
+      {
+        "full_name": "pathwaycom/pathway",
+        "stars": 62150,
+        "stars_growth": 0
+      },
+      {
+        "full_name": "BerriAI/litellm",
+        "stars": 60414,
+        "stars_growth": 385
+      },
+      {
+        "full_name": "boykopovar/AnyPS5",
+        "stars": 17085,
+        "stars_growth": 13762
+      },
+      {
+        "full_name": "mvschwarz/openrig",
+        "stars": 6233,
+        "stars_growth": 2693
+      },
+      {
+        "full_name": "heygen-com/hyperframes",
+        "stars": 59363,
+        "stars_growth": 3996
+      },
+      {
+        "full_name": "EpicGames/raddebugger",
+        "stars": 8178,
+        "stars_growth": 448
+      },
+      {
+        "full_name": "cursor/plugins",
+        "stars": 10454,
+        "stars_growth": 1109
+      },
+      {
+        "full_name": "earthtojake/text-to-cad",
+        "stars": 18551,
+        "stars_growth": 1898
+      },
+      {
+        "full_name": "DuarteSantos8/openGym",
+        "stars": 8188,
+        "stars_growth": 6086
+      },
+      {
+        "full_name": "pablostanley/yoinks",
+        "stars": 5495,
+        "stars_growth": 2706
+      },
+      {
+        "full_name": "cathrynlavery/diagram-design",
+        "stars": 46873,
+        "stars_growth": 2644
+      },
+      {
+        "full_name": "morluto/rea",
+        "stars": 31032,
+        "stars_growth": 20478
+      },
+      {
+        "full_name": "anthropics/knowledge-work-plugins",
+        "stars": 27843,
+        "stars_growth": 1193
+      },
+      {
+        "full_name": "storytold/artcraft",
+        "stars": 8894,
+        "stars_growth": 2103
+      },
+      {
+        "full_name": "liquidslr/system-design-notes",
+        "stars": 24943,
+        "stars_growth": 393
+      },
+      {
+        "full_name": "HunxByts/GhostTrack",
+        "stars": 17618,
+        "stars_growth": 1292
+      },
+      {
+        "full_name": "jamwithai/production-agentic-rag-course",
+        "stars": 9683,
+        "stars_growth": 630
+      },
+      {
+        "full_name": "ifixai-ai/iFixAi",
+        "stars": 22783,
+        "stars_growth": 4795
+      },
+      {
+        "full_name": "Tracer-Cloud/opensre",
+        "stars": 11667,
+        "stars_growth": 346
+      },
+      {
+        "full_name": "Anil-matcha/open-dots",
+        "stars": 5574,
+        "stars_growth": 464
+      },
+      {
+        "full_name": "p-e-w/heretic",
+        "stars": 34151,
+        "stars_growth": 1434
+      },
+      {
+        "full_name": "tile-ai/tilelang",
+        "stars": 8526,
+        "stars_growth": 495
+      },
+      {
+        "full_name": "dortania/OpenCore-Legacy-Patcher",
+        "stars": 18522,
+        "stars_growth": 156
+      },
+      {
+        "full_name": "sambanks/octabam",
+        "stars": 240,
+        "stars_growth": 49
+      },
+      {
+        "full_name": "ayghri/i-have-adhd",
+        "stars": 55893,
+        "stars_growth": 2894
+      },
+      {
+        "full_name": "abrignoni/ALEAPP",
+        "stars": 976,
+        "stars_growth": 18
+      },
+      {
+        "full_name": "smicallef/spiderfoot",
+        "stars": 23208,
+        "stars_growth": 88
+      },
+      {
+        "full_name": "bmad-code-org/BMAD-METHOD",
+        "stars": 53967,
+        "stars_growth": 51
+      },
+      {
+        "full_name": "psf/black",
+        "stars": 41887,
+        "stars_growth": 7
+      },
+      {
+        "full_name": "microsoft/agent-framework",
+        "stars": 14023,
+        "stars_growth": 27
+      },
+      {
+        "full_name": "IAmTomShaw/f1-race-replay",
+        "stars": 6689,
+        "stars_growth": 148
+      },
+      {
+        "full_name": "superdesigndev/treg",
+        "stars": 4879,
+        "stars_growth": 119
+      },
+      {
+        "full_name": "CursorTouch/Windows-MCP",
+        "stars": 8375,
+        "stars_growth": 360
+      },
+      {
+        "full_name": "tashfeenahmed/freellmapi",
+        "stars": 32271,
+        "stars_growth": 1234
+      },
+      {
+        "full_name": "koala73/worldmonitor",
+        "stars": 88108,
+        "stars_growth": 89
+      },
+      {
+        "full_name": "tester-army/e2e",
+        "stars": 8258,
+        "stars_growth": 4812
+      },
+      {
+        "full_name": "reconurge/flowsint",
+        "stars": 9563,
+        "stars_growth": 69
+      },
+      {
+        "full_name": "Vincentwei1021/video-shotcraft",
+        "stars": 10940,
+        "stars_growth": 241
+      },
+      {
+        "full_name": "Gimanh/taskview-community",
+        "stars": 1283,
+        "stars_growth": 25
+      },
+      {
+        "full_name": "ItzCrazyKns/Vane",
+        "stars": 37168,
+        "stars_growth": 44
+      },
+      {
+        "full_name": "dyad-sh/dyad",
+        "stars": 21783,
+        "stars_growth": 37
+      },
+      {
+        "full_name": "thebuggeddev/anatomy",
+        "stars": 3439,
+        "stars_growth": 6
+      },
+      {
+        "full_name": "DmNote-App/DmNote",
+        "stars": 2794,
+        "stars_growth": 263
+      },
+      {
+        "full_name": "backnotprop/plannotator",
+        "stars": 9239,
+        "stars_growth": 54
+      },
+      {
+        "full_name": "videojs/video.js",
+        "stars": 39918,
+        "stars_growth": 4
+      },
+      {
+        "full_name": "davidmonterocrespo24/velxio",
+        "stars": 3128,
+        "stars_growth": 43
+      },
+      {
+        "full_name": "openai/codex-security",
+        "stars": 11042,
+        "stars_growth": 30
+      }
+    ],
+    "count": 211
   }
 }
